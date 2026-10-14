@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café & Aconchego - O Melhor Café da Cidade!</title>
+    <!-- CSS e Estilos Retrô Anos 2000/2010 -->
+    <style>
+        /* Reset básico e tipografia clássica */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f5eccd; /* Amarelo/Bege levemente vibrante */
+            font-family: "Times New Roman", Times, serif;
+            color: #3e2723; /* Marrom escuro */
+            line-height: 1.5;
+            background-image: linear-gradient(to bottom, #fff5d7, #f5eccd);
+        }
+
+        /* Container Principal com borda sobressalente vintage */
+        #container {
+            width: 880px;
+            max-width: 95%;
+            margin: 20px auto;
+            background-color: #fff9e6;
+            border: 5px ridge #8d6e63;
+            padding: 15px;
+            box-shadow: 8px 8px 0px #5d4037;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #4e342e;
+            color: #fff8e1;
+            text-align: center;
+            padding: 25px 10px;
+            border: 3px inset #8d6e63;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #ffeb3b; /* Amarelo vibrante */
+            text-shadow: 2px 2px 0px #000;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 16px;
+            font-style: italic;
+            color: #ffe082;
+        }
+
+        /* Banner Marquee clássico dos anos 2000 */
+        .letreiro {
+            background-color: #fff176;
+            color: #3e2723;
+            border: 1px dashed #5d4037;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navegação */
+        nav {
+            background-color: #6d4c41;
+            padding: 8px;
+            text-align: center;
+            border: 2px solid #3e2723;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-decoration: underline;
+            padding: 6px 15px;
+            margin: 0 4px;
+            display: inline-block;
+            background-color: #8d6e63;
+            border: 2px outset #a1887f;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            background-color: #ffb300;
+            color: #000000;
+            border-style: inset;
+        }
+
+        /* Layout em colunas simples */
+        .conteudo-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .coluna-principal {
+            flex: 2;
+            min-width: 280px;
+        }
+
+        .coluna-lateral {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        /* Seções */
+        section {
+            background-color: #ffffff;
+            border: 2px solid #a1887f;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: #4e342e;
+            border-bottom: 2px solid #ffb300;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+            background-color: #fff8e1;
+            padding-left: 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        /* Tabela de Cardápio Antiga */
+        table.cardapio {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        table.cardapio th {
+            background-color: #6d4c41;
+            color: white;
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #3e2723;
+        }
+
+        table.cardapio td {
+            padding: 8px;
+            border: 1px solid #d7ccc8;
+        }
+
+        table.cardapio tr:nth-child(even) {
+            background-color: #fffde7;
+        }
+
+        table.cardapio tr:hover {
+            background-color: #ffe082;
+        }
+
+        /* Caixas de Informação */
+        .caixa-info {
+            background-color: #fff8e1;
+            border: 2px dashed #8d6e63;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .caixa-info h3 {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #5d4037;
+            margin-bottom: 8px;
+            text-decoration: underline;
+        }
+
+        .caixa-info ul {
+            list-style-type: square;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        /* Formulário Retrô */
+        form {
+            background-color: #f5f5f5;
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+
+        .campo {
+            margin-bottom: 10px;
+        }
+
+        .campo label {
+            display: block;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .campo input[type="text"],
+        .campo input[type="email"],
+        .campo textarea {
+            width: 100%;
+            padding: 6px;
+            border: 2px inset #ccc;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            background-color: #fff;
+        }
+
+        /* Botão estilizado anos 2000 */
+        .btn-enviar {
+            background: linear-gradient(to bottom, #ffe082, #ffb300);
+            border: 2px outset #d7ccc8;
+            color: #3e2723;
+            font-weight: bold;
+            padding: 6px 20px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .btn-enviar:active {
+            border-style: inset;
+        }
+
+        /* Mensagem de confirmação customizada */
+        #mensagem-sucesso {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Imagem fofa simulada */
+        .foto-maria {
+            width: 100%;
+            max-width: 200px;
+            float: left;
+            margin: 0 12px 10px 0;
+            border: 3px double #8d6e63;
+            padding: 3px;
+            background-color: #fff;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #4e342e;
+            color: #d7ccc8;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            border: 2px solid #3e2723;
+            margin-top: 10px;
+        }
+
+        footer a {
+            color: #ffe082;
+            text-decoration: underline;
+        }
+
+        /* Contador de visitas simulado */
+        .contador-visitas {
+            margin-top: 8px;
+            display: inline-block;
+            background-color: #000;
+            color: #0f0;
+            font-family: "Courier New", Courier, monospace;
+            padding: 2px 8px;
+            border: 1px solid #777;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <!-- Cabeçalho -->
+        <header>
+            <h1>☕ Café & Aconchego</h1>
+            <p>"O sabor do café feito com amor, igual na casa da vovó!"</p>
+        </header>
+
+        <!-- Letreiro em movimento tradicional -->
+        <div class="letreiro">
+            <marquee behavior="scroll" direction="left" scrollamount="4">
+                🎉 NOVIDADE: Venha provar nosso famoso Bolo de Fubá com Goiabada fresquinho saindo às 15h! | Aceitamos encomendas para festas e reuniões!
+            </marquee>
+        </div>
+
+        <!-- Links de Navegação -->
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#cardapio">Nosso Cardápio</a>
+            <a href="#contato">Deixe seu Recado</a>
+        </nav>
+
+        <!-- Layout de Conteúdo -->
+        <div class="conteudo-flex">
+            
+            <!-- Coluna Principal -->
+            <div class="coluna-principal">
+                
+                <!-- Seção Início / Boas Vindas -->
+                <section id="inicio">
+                    <h2>Seja Bem-Vindo ao Nosso Cantinho!</h2>
+                    <p>
+                        Se você está procurando um lugar calmo para tomar um café passado na hora, comer um pão de queijo quentinho e conversar com os amigos, você encontrou o lugar certo!
+                    </p>
+                    <p>
+                        Aqui no <b>Café & Aconchego</b>, preparamos tudo com ingredientes selecionados e muito carinho para que você se sinta verdadeiramente em casa.
+                    </p>
+                </section>
+
+                <!-- Seção Sobre Nós -->
+                <section id="sobre">
+                    <h2>Sobre Nós</h2>
+                    <img src="https://placehold.co/200x180/8d6e63/ffffff?text=Dona+Maria+☕" alt="Dona Maria preparando café" class="foto-maria">
+                    <p>
+                        A história do <i>Café & Aconchego</i> começou em 2008, quando a <b>Dona Maria</b> resolveu realizar o sonho de abrir as portas da sua própria cozinha para a vizinhança.
+                    </p>
+                    <p>
+                        Famosa no bairro por seus bolos fofinhos e seu café coado no pano, Dona Maria começou com apenas três mesas pequenas. Com o tempo e o carinho dos clientes, a cafeteria cresceu, mas o gostinho de comida de vó continua exatamente o mesmo!
+                    </p>
+                    <div style="clear: both;"></div>
+                </section>
+
+                <!-- Seção Cardápio -->
+                <section id="cardapio">
+                    <h2>Nosso Cardápio Especial</h2>
+                    <p>Confira nossas opções mais pedidas do dia:</p>
+                    
+                    <table class="cardapio">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Descrição</th>
+                                <th>Preço (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Café Coado Tradicional</b></td>
+                               <td>Pequeno ou grande, feito no coador de pano.</td>
+                                <td>R$ 4,50</td>
+                            </tr>
+                            <tr>
+                                <td><b>Café com Leite Pingado</b></td>
+                                <td>A mistura perfeita para começar o dia.</td>
+                                <td>R$ 5,50</td>
+                            </tr>
+                            <tr>
+                                <td><b>Pão de Queijo Mineiro</b></td>
+                                <td>Assado na hora, bem recheado de queijo.</td>
+                                <td>R$ 4,00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Fatia de Bolo Caseiro</b></td>
+                                <td>Sabores: Fubá, Cenoura com Chocolate ou Laranja.</td>
+                                <td>R$ 7,00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Torta Doce Especiais</b></td>
+                                <td>Consulte a opção do dia com a Dona Maria.</td>
+                                <td>R$ 9,50</td>
+                            </tr>
+                            <tr>
+                                <td><b>Suco Natural de Laranja</b></td>
+                                <td>Copo de 400ml feito na hora.</td>
+                                <td>R$ 8,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+
+            <!-- Coluna Lateral (Informações e Form) -->
+            <div class="coluna-lateral">
+                
+                <!-- Horários -->
+                <div class="caixa-info">
+                    <h3>🕒 Horário de Funcionamento</h3>
+                    <ul>
+                        <li><b>Segunda a Sexta:</b> 07:00 - 19:00</li>
+                        <li><b>Sábados:</b> 08:00 - 18:00</li>
+                        <li><b>Domingos e Feriados:</b> 08:00 - 12:00</li>
+                    </ul>
+                </div>
+
+                <!-- Endereço -->
+                <div class="caixa-info">
+                    <h3>📍 Onde Estamos</h3>
+                    <p style="font-size: 13px; font-family: Arial, sans-serif; text-align: left;">
+                        Rua das Flores, nº 123 - Bairro Centro<br>
+                        (Perto da Praça da Matriz)<br>
+                        <b>Telefone:</b> (11) 5555-4321<br>
+                        <b>WhatsApp:</b> (11) 98888-7777
+                    </p>
+                </div>
+
+                <!-- Form de Contato / Recado -->
+                <section id="contato" style="margin-bottom: 0;">
+                    <h2>Deixe seu Recado</h2>
+                    <form id="form-recado" onsubmit="enviarMensagem(event)">
+                        <div class="campo">
+                            <label for="nome">Seu Nome:</label>
+                            <input type="text" id="nome" required placeholder="Ex: João Silva">
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="email">Seu E-mail:</label>
+                            <input type="email" id="email" required placeholder="seu@email.com">
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="mensagem">Sua Mensagem:</label>
+                            <textarea id="mensagem" rows="4" required placeholder="Escreva aqui..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-enviar">Enviar Recado</button>
+                    </form>
+
+                    <!-- Mensagem de Sucesso -->
+                    <div id="mensagem-sucesso">
+                        ✨ Obrigado pelo recado! A Dona Maria responderá em breve!
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>© 2008 - 2026 Café & Aconchego. Todos os direitos reservados.</p>
+            <p style="margin-top: 5px;">
+                Siga-nos nas Redes Sociais: 
+                <a href="#instagram">Instagram</a> | 
+                <a href="#facebook">Facebook</a>
+            </p>
+            <div>
+                Você é o visitante nº: <span class="contador-visitas">004829</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Script Simples para o formulário e interação -->
+    <script>
+        function enviarMensagem(event) {
+            // Evita recarregar a página
+            event.preventDefault();
+
+            // Pega o elemento da mensagem de sucesso
+            var msgSucesso = document.getElementById('mensagem-sucesso');
+            var form = document.getElementById('form-recado');
+
+            // Exibe caixa de aviso amadora (Alert vintage)
+            alert('Mensagem enviada com sucesso para o Café & Aconchego!');
+
+            // Mostra o quadro verde de confirmação na página
+            msgSucesso.style.display = 'block';
+
+            // Limpa o formulário
+            form.reset();
+
+            // Esconde a mensagem de confirmação após 5 segundos
+            setTimeout(function() {
+                msgSucesso.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

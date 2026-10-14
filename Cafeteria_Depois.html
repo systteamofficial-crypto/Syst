@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café & Aconchego | Cafeteria Artesanal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        espresso: {
+                            800: '#2A1810',
+                            900: '#1C0F0A',
+                        },
+                        roast: '#3D2314',
+                        amber: {
+                            gold: '#D4AF37',
+                        },
+                        terracotta: '#C86D51',
+                        cream: {
+                            50: '#FDFBF7',
+                            100: '#F8F4EC',
+                            200: '#EFE7D8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(28, 15, 10, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(28, 15, 10, 0.7) 0%, rgba(28, 15, 10, 0.85) 100%);
+        }
+    </style>
+</head>
+<body class="bg-cream-50 text-espresso-900 font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- Header Fixo -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header text-cream-100 transition-all duration-300 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <span class="w-10 h-10 rounded-full bg-terracotta flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold fa-mug-hot"></i>
+                </span>
+                <div class="flex flex-col">
+                    <span class="font-serif text-2xl font-bold tracking-tight text-cream-50">Café & Aconchego</span>
+                    <span class="text-[10px] tracking-widest uppercase text-amber-gold font-medium">Desde 2008</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#sobre" class="hover:text-amber-gold transition-colors">Sobre Nós</a>
+                <a href="#cardapio" class="hover:text-amber-gold transition-colors">Cardápio Especial</a>
+                <a href="#galeria" class="hover:text-amber-gold transition-colors">Galeria</a>
+                <a href="#avaliacoes" class="hover:text-amber-gold transition-colors">Avaliações</a>
+                <a href="#contato" class="hover:text-amber-gold transition-colors">Contato</a>
+            </nav>
+
+            <!-- CTA / Contact Btn -->
+            <div class="hidden md:flex items-center">
+                <a href="#cardapio" class="bg-terracotta hover:bg-opacity-90 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-terracotta/30">
+                    Fazer Pedido
+                </a>
+            </div>
+
+            <!-- Mobile Menu Btn -->
+            <button id="menu-btn" class="md:hidden text-2xl text-cream-100 focus:outline-none p-2">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-espresso-900 border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#sobre" class="mobile-link block text-cream-100 hover:text-amber-gold py-1">Sobre Nós</a>
+            <a href="#cardapio" class="mobile-link block text-cream-100 hover:text-amber-gold py-1">Cardápio Especial</a>
+            <a href="#galeria" class="mobile-link block text-cream-100 hover:text-amber-gold py-1">Galeria</a>
+            <a href="#avaliacoes" class="mobile-link block text-cream-100 hover:text-amber-gold py-1">Avaliações</a>
+            <a href="#contato" class="mobile-link block text-cream-100 hover:text-amber-gold py-1">Contato</a>
+            <a href="#cardapio" class="mobile-link inline-block w-full text-center bg-terracotta text-white py-3 rounded-full font-medium mt-2">
+                Ver Cardápio
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Image com Zoom suave -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1920" 
+                 alt="Ambiente acolhedor da cafeteria" 
+                 class="w-full h-full object-cover scale-105 animate-pulse" style="animation-duration: 8s;">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-cream-50 space-y-8 my-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs uppercase tracking-widest text-amber-gold font-semibold">
+                <i class="fa-solid fa-seedling text-terracotta"></i> Cafés Artesanais & Grãos Selecionados
+            </div>
+            
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold leading-tight">
+                Um refúgio para os sentidos,<br>
+                <span class="italic text-amber-gold font-normal">uma xícara de acolhimento.</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-cream-200 max-w-2xl mx-auto font-light leading-relaxed">
+                Descubra a combinação perfeita entre o aroma dos grãos recém-moídos, confeitaria de excelência e um ambiente feito para criar memórias inesquecíveis.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#cardapio" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-opacity-90 text-white font-medium rounded-full transition-all shadow-lg hover:shadow-terracotta/40 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-mug-saucer"></i> Ver Cardápio Especial
+                </a>
+                <a href="#sobre" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-cream-50 font-medium rounded-full backdrop-blur-md border border-white/20 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    Nossa História <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#sobre" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-cream-200 hover:text-amber-gold transition-colors animate-bounce">
+            <i class="fa-solid fa-chevron-down text-xl"></i>
+        </a>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="py-24 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Imagens Colagem -->
+                <div class="relative">
+                    <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" 
+                             alt="Barista preparando café artesanal" 
+                             class="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 w-2/3 z-20 rounded-2xl overflow-hidden shadow-2xl border-4 border-cream-100 hidden sm:block">
+                        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=600" 
+                             alt="Grãos de café torrados" 
+                             class="w-full h-56 object-cover">
+                    </div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-terracotta/10 rounded-full blur-2xl"></div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 text-terracotta font-semibold text-sm uppercase tracking-wider">
+                        <span class="w-8 h-[2px] bg-terracotta"></span>Tradição & Cuidado
+                    </div>
+                    
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso-900 leading-tight">
+                        Do grão especial à sua xícara, com o carinho que você merece.
+                    </h2>
+
+                    <p class="text-espresso-800/80 leading-relaxed font-normal">
+                        Nascemos com o propósito de reacender a pausa no dia a dia. Selecionamos rigorosamente microlotes de grãos 100% Arábica de produtores locais sustentáveis, garantindo que cada extração revele aromas marcantes e notas sensoriais equilibradas.
+                    </p>
+
+                    <p class="text-espresso-800/80 leading-relaxed">
+                        Combine sua bebida favorita com receitas artesanais preparadas diariamente na nossa cozinha, desde pães de fermentação natural a doces delicados.
+                    </p>
+
+                    <!-- Features Destaques -->
+                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-espresso-800/10">
+                        <div class="flex items-start gap-3">
+                            <span class="p-3 bg-terracotta/10 rounded-xl text-terracotta text-xl">
+                                <i class="fa-solid fa-leaf"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-espresso-900">Grãos Orgânicos</h4>
+                                <p class="text-sm text-espresso-800/70">100% rastreáveis e sustentáveis</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="p-3 bg-terracotta/10 rounded-xl text-terracotta text-xl">
+                                <i class="fa-solid fa-wheat-awn"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-espresso-900">Receitas Próprias</h4>
+                                <p class="text-sm text-espresso-800/70">Panificação diária no local</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cardápio Interativo -->
+    <section id="cardapio" class="py-24 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Cabeçalho Seção -->
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-12">
+                <span class="text-terracotta font-semibold text-sm uppercase tracking-wider">Nossos Sabores</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso-900">Cardápio Especial</h2>
+                <p class="text-espresso-800/70">Explore nossas especialidades preparadas por baristas e confeiteiros experientes.</p>
+            </div>
+
+            <!-- Filtros de Categoria -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filtrarCardapio('todos')" class="filter-btn active px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-espresso-900 text-white shadow-md" data-category="todos">
+                    Todos os Itens
+                </button>
+                <button onclick="filtrarCardapio('cafes')" class="filter-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-cream-200 text-espresso-900 hover:bg-terracotta hover:text-white" data-category="cafes">
+                    ☕ Cafés Especiais
+                </button>
+                <button onclick="filtrarCardapio('acompanhamentos')" class="filter-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-cream-200 text-espresso-900 hover:bg-terracotta hover:text-white" data-category="acompanhamentos">
+                    🥐 Acompanhamentos
+                </button>
+                <button onclick="filtrarCardapio('sobremesas')" class="filter-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-cream-200 text-espresso-900 hover:bg-terracotta hover:text-white" data-category="sobremesas">
+                    🍰 Sobremesas
+                </button>
+            </div>
+
+            <!-- Grid de Itens -->
+            <div id="cardapio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Item 1 (Café) -->
+                <div class="menu-item cafes group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=600" 
+                             alt="Cappuccino Velvet" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 16,90
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Cappuccino Velvet</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Espresso duplo, leite vaporizado com textura aveludada, toque de cacau belga em pó e canela.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 (Café) -->
+                <div class="menu-item cafes group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&q=80&w=600" 
+                             alt="Flat White Signature" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 14,50
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Flat White Signature</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Ristretto duplo combinado com microespuma fluida de leite integral de fazenda local.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Café) -->
+                <div class="menu-item cafes group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&q=80&w=600" 
+                             alt="Cold Brew Caramelo" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 18,00
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Cold Brew Caramelo</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Café de infusão a frio por 18 horas, servido com xarope artesanal de caramelo salgado e gelo.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Acompanhamentos) -->
+                <div class="menu-item acompanhamentos group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" 
+                             alt="Croissant Folhado Francês" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 15,00
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Croissant Francês de Manteiga</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Massa folhada artesanal, dourada e crocante por fora, extremamente macia por dentro.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 (Acompanhamentos) -->
+                <div class="menu-item acompanhamentos group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" 
+                             alt="Toast de Abacate & Ovos" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 24,90
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Toast de Sourdough com Abacate</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Pão de fermentação natural grelhado, creme de abacate temperado, ovos poché e sementes.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 (Sobremesas) -->
+                <div class="menu-item sobremesas group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=600" 
+                             alt="Tiramisu Tradicional" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 22,00
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Tiramisù Italiano</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Camadas de biscoito Champagne embebidas em espresso e rum, creme leve de mascarpone e cacau.</p>
+                    </div>
+                </div>
+
+                <!-- Item 7 (Sobremesas) -->
+                <div class="menu-item sobremesas group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-cream-200">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=600" 
+                             alt="Cheesecake de Frutas Vermelhas" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-espresso-900/80 backdrop-blur-md text-amber-gold font-bold px-3 py-1 rounded-full text-sm">
+                            R$ 19,50
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900 group-hover:text-terracotta transition-colors">Cheesecake de Frutas Vermelhas</h3>
+                        <p class="text-sm text-espresso-800/70 leading-relaxed">Base crocante, creme suave com toque de limão e calda artesanal de amoras e framboesas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section id="galeria" class="py-24 bg-espresso-900 text-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <span class="text-amber-gold font-semibold text-sm uppercase tracking-wider">Espaço & Experiência</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold">Galeria de Momentos</h2>
+                <p class="text-cream-200/70">Conheça um pouco do nosso ambiente planejado para você relaxar, trabalhar ou encontrar amigos.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-2xl h-64 group">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600" 
+                         alt="Interior da cafeteria" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="overflow-hidden rounded-2xl h-64 group">
+                    <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&q=80&w=600" 
+                         alt="Detalhes de café coado" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="overflow-hidden rounded-2xl h-64 group">
+                    <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&q=80&w=600" 
+                         alt="Pessoa tomando café e lendo" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="overflow-hidden rounded-2xl h-64 group">
+                    <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&q=80&w=600" 
+                         alt="Preparo de Latte Art" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="avaliacoes" class="py-24 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <span class="text-terracotta font-semibold text-sm uppercase tracking-wider">Depoimentos</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso-900">O que Dizem Nossos Clientes</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-cream-200 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="text-amber-gold flex gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-espresso-800/80 italic text-sm leading-relaxed">
+                            "O melhor cappuccino da cidade! O ambiente é extremamente calmo e agradável para fazer reuniões ou ler um bom livro."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-100">
+                        <div class="w-10 h-10 rounded-full bg-terracotta/20 text-terracotta flex items-center justify-center font-bold">
+                            MC
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-espresso-900">Mariana Costa</h4>
+                            <span class="text-xs text-espresso-800/60">Cliente Frequente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-cream-200 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="text-amber-gold flex gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-espresso-800/80 italic text-sm leading-relaxed">
+                            "Atendimento impecável! O croissant parece que foi trazido diretamente de Paris e os grãos de café têm notas florais surpreendentes."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-100">
+                        <div class="w-10 h-10 rounded-full bg-terracotta/20 text-terracotta flex items-center justify-center font-bold">
+                            RL
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-espresso-900">Ricardo Lima</h4>
+                            <span class="text-xs text-espresso-800/60">Apreciador de Cafés</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-cream-200 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="text-amber-gold flex gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-espresso-800/80 italic text-sm leading-relaxed">
+                            "Um refúgio no meio da rotina agitada. O Tiramisù é simplesmente divino e o atendimento sempre faz você se sentir em casa."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-100">
+                        <div class="w-10 h-10 rounded-full bg-terracotta/20 text-terracotta flex items-center justify-center font-bold">
+                            BS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-espresso-900">Beatriz Santos</h4>
+                            <span class="text-xs text-espresso-800/60">Guia Local</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato & Localização -->
+    <section id="contato" class="py-24 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Informações -->
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-terracotta font-semibold text-sm uppercase tracking-wider">Venha nos Visitar</span>
+                        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso-900 mt-2">Estamos te esperando!</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-espresso-900">Endereço</h4>
+                                <p class="text-espresso-800/70 text-sm">Rua das Flores, 123 - Centro<br>Campo Grande - MS, 79002-000</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-espresso-900">Horário de Funcionamento</h4>
+                                <p class="text-espresso-800/70 text-sm">Segunda a Sexta: 07:00 às 19:00<br>Sábados e Domingos: 08:00 às 18:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-espresso-900">Contato & Reservas</h4>
+                                <p class="text-espresso-800/70 text-sm">(67) 3333-4444<br>contato@cafeaconchego.com.br</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Mensagem -->
+                <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-cream-200">
+                    <h3 class="font-serif text-2xl font-bold text-espresso-900 mb-6">Envie uma Mensagem</h3>
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-espresso-900 mb-1">Nome Completo</label>
+                            <input type="text" required placeholder="Seu nome" class="w-full px-4 py-3 rounded-xl border border-cream-200 focus:outline-none focus:ring-2 focus:ring-terracotta text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-espresso-900 mb-1">E-mail</label>
+                            <input type="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl border border-cream-200 focus:outline-none focus:ring-2 focus:ring-terracotta text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-espresso-900 mb-1">Mensagem</label>
+                            <textarea rows="4" required placeholder="Como podemos te ajudar?" class="w-full px-4 py-3 rounded-xl border border-cream-200 focus:outline-none focus:ring-2 focus:ring-terracotta text-sm"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-terracotta hover:bg-opacity-90 text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                    <div id="form-toast" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-sm font-medium text-center">
+                        ✨ Mensagem enviada com sucesso! Entraremos em contato em breve.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-espresso-900 text-cream-100 border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Coluna Logo -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-terracotta flex items-center justify-center text-white text-sm">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </span>
+                        <span class="font-serif text-xl font-bold text-cream-50">Café & Aconchego</span>
+                    </div>
+                    <p class="text-sm text-cream-200/70 leading-relaxed">
+                        Sua pausa diária para saborear os melhores momentos e os melhores grãos.
+                    </p>
+                </div>
+
+                <!-- Links Rápidos -->
+                <div class="space-y-3">
+                    <h4 class="text-amber-gold font-bold text-sm uppercase tracking-wider">Navegação</h4>
+                    <ul class="space-y-2 text-sm text-cream-200/80">
+                        <li><a href="#sobre" class="hover:text-amber-gold transition-colors">Sobre Nós</a></li>
+                        <li><a href="#cardapio" class="hover:text-amber-gold transition-colors">Cardápio Especial</a></li>
+                        <li><a href="#galeria" class="hover:text-amber-gold transition-colors">Galeria</a></li>
+                        <li><a href="#contato" class="hover:text-amber-gold transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociais -->
+                <div class="space-y-3">
+                    <h4 class="text-amber-gold font-bold text-sm uppercase tracking-wider">Redes Sociais</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-terracotta flex items-center justify-center transition-colors text-cream-50">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-terracotta flex items-center justify-center transition-colors text-cream-50">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 hover:bg-terracotta flex items-center justify-center transition-colors text-cream-50">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="space-y-3">
+                    <h4 class="text-amber-gold font-bold text-sm uppercase tracking-wider">Newsletter</h4>
+                    <p class="text-xs text-cream-200/70">Receba convites para eventos de degustação e ofertas exclusivas.</p>
+                    <form onsubmit="event.preventDefault(); this.reset(); alert('Obrigado por se inscrever!');" class="flex gap-2">
+                        <input type="email" required placeholder="Seu e-mail" class="bg-white/10 px-3 py-2 rounded-lg text-sm text-cream-50 border border-white/10 focus:outline-none focus:ring-1 focus:ring-amber-gold w-full">
+                        <button type="submit" class="bg-terracotta px-4 py-2 rounded-lg text-sm font-semibold hover:bg-opacity-90 transition-colors">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 text-center text-xs text-cream-200/50">
+                <p>© 2026 Café & Aconchego. Todos os direitos reservados. Feito com amor em Campo Grande, MS.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts da Aplicação -->
+    <script>
+        // Menu Mobile Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Filtro do Cardápio Interativo
+        function filtrarCardapio(categoria) {
+            const items = document.querySelectorAll('.menu-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Atualizar classe dos botões
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === categoria) {
+                    btn.classList.add('bg-espresso-900', 'text-white', 'shadow-md');
+                    btn.classList.remove('bg-cream-200', 'text-espresso-900');
+                } else {
+                    btn.classList.remove('bg-espresso-900', 'text-white', 'shadow-md');
+                    btn.classList.add('bg-cream-200', 'text-espresso-900');
+                }
+            });
+
+            // Filtrar cards
+            items.forEach(item => {
+                if (categoria === 'todos' || item.classList.contains(categoria)) {
+                    item.style.display = 'block';
+                    item.classList.add('animate-fade-in');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Submissão do Formulário de Contato
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contact-form');
+            const toast = document.getElementById('form-toast');
+
+            toast.classList.remove('hidden');
+            form.reset();
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
