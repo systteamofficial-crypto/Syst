@@ -31,6 +31,14 @@
         .phone-copy-btn:focus-visible { outline: 2px solid #ff2a4b; outline-offset: 4px; }
         .phone-copy { display: inline-block; }
         .copy-feedback { display: block; margin-top: 4px; font-size: 0.8em; color: #ff2a4b; }
+        
+        /* Ajustes para múltiplas categorias nos cards de preço */
+        .service-subcategories { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+        .sub-item { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 12px; }
+        .sub-item:first-child { border-top: none; padding-top: 0; }
+        .sub-title { font-weight: 700; font-size: 0.95rem; color: #fff; margin-bottom: 4px; display: block; }
+        .sub-price { color: #ff2a4b; font-weight: 600; font-size: 0.9rem; margin-left: 6px; }
+        .sub-desc { font-size: 0.85rem; color: #aaa; margin: 0; }
     </style>
 </head>
 <body>
@@ -83,7 +91,7 @@
                 <div class="hero-content">
                     <span class="badge">Desenvolvimento Independente &amp; Sob Medida</span>
                     <h1 class="hero-title">Sua ideia. Nosso desenvolvimento.</h1>
-                    <p class="hero-description">Criamos sites, aprimoramos interfaces e desenvolvemos aplicativos desktop do seu site.</p>
+                    <p class="hero-description">Criamos sites, aprimoramos interfaces, sistemas modulares e APIs com foco em qualidade, performance e suporte real[cite: 1].</p>
                     <div class="hero-buttons">
                         <a href="#servicos" class="btn btn-primary">Conhecer serviços</a>
                         <a href="#contato" class="btn btn-outline">Solicitar orçamento</a>
@@ -117,24 +125,44 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
             <div class="container">
                 <div class="section-header" id="precos">
                     <span class="section-tag">Serviços &amp; Investimento</span>
-                    <h2 class="section-title">Soluções diretas para o seu negócio</h2>
-                    <p class="section-subtitle">Valores iniciais indicativos. Cada escopo é analisado individualmente. <strong>Forma de pagamento exclusiva: PIX.</strong></p>
+                    <h2 class="section-title">Tabela de preços oficial da Syst Team</h2>
+                    <p class="section-subtitle">Qualidade, performance e suporte real[cite: 1]. Cada escopo é analisado individualmente. <strong>Forma de pagamento exclusiva: PIX.</strong></p>
                 </div>
 
                 <div class="services-grid">
+                    <!-- PLANO BÁSICO -->
                     <article class="card service-card">
                         <div class="card-header">
-                            <span class="service-category">Interface</span>
-                            <h3 class="service-title">Redesign de interfaces</h3>
+                            <span class="service-category">Básico</span>
+                            <h3 class="service-title">Projetos pequenos e objetivos</h3>
                         </div>
                         <div class="card-body">
                             <div class="price-tag">
-                                <span class="price-label">Preço inicial</span>
-                                <span class="price-value">R$ 50</span>
+                                <span class="price-label">Faixa de preço</span>
+                                <span class="price-value">R$ 400–900</span>
                             </div>
-                            <p class="service-desc">Inclui melhorias visuais com CSS e ajustes pontuais no HTML, organização do layout, componentes visuais e responsividade conforme o escopo.</p>
+                            <p class="service-desc">Serviços incluídos nesta categoria:</p>
+                            
+                            <div class="service-subcategories">
+                                <div class="sub-item">
+                                    <span class="sub-title">Redesign de interface <span class="sub-price">R$ 400–800</span></span>
+                                    <p class="sub-desc">Melhorias visuais em páginas existentes, CSS, responsividade e organização dos componentes.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Landing page personalizada <span class="sub-price">R$ 600–900</span></span>
+                                    <p class="sub-desc">Página única com identidade visual, seções, botões e links funcionais.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Correções e otimização <span class="sub-price">R$ 400–700</span></span>
+                                    <p class="sub-desc">Correção de bugs, ajustes de layout e melhorias pontuais de desempenho.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Integração simples com WhatsApp <span class="sub-price">R$ 400–600</span></span>
+                                    <p class="sub-desc">Botões de contato, mensagens pré-preenchidas e links dinâmicos.</p>
+                                </div>
+                            </div>
+
                             <ul class="service-notes">
-                                <li><span>✕</span> Não inclui reescrita geral do backend ou da lógica existente.</li>
                                 <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
                             </ul>
                         </div>
@@ -143,19 +171,39 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
                         </div>
                     </article>
 
+                    <!-- PLANO INTERMEDIÁRIO -->
                     <article class="card service-card featured-card">
                         <div class="card-header">
-                            <span class="service-category">Desktop</span>
-                            <h3 class="service-title">Aplicativos Python + WebView</h3>
+                            <span class="service-category">Intermediário</span>
+                            <h3 class="service-title">Sites completos e funcionalidades personalizadas</h3>
                         </div>
                         <div class="card-body">
                             <div class="price-tag">
-                                <span class="price-label">Preço inicial</span>
-                                <span class="price-value">R$ 150</span>
+                                <span class="price-label">Faixa de preço</span>
+                                <span class="price-value">R$ 900–2.000</span>
                             </div>
-                            <p class="service-desc">Inclui aplicativos que exibem sites compatíveis em uma janela própria, personalização de nome e ícone e empacotamento em executável conforme o escopo.</p>
+                            <p class="service-desc">Serviços incluídos nesta categoria:</p>
+
+                            <div class="service-subcategories">
+                                <div class="sub-item">
+                                    <span class="sub-title">Site institucional personalizado <span class="sub-price">R$ 1.200–2.000</span></span>
+                                    <p class="sub-desc">Múltiplas páginas, navegação, responsividade, identidade visual e formulários.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Painel administrativo <span class="sub-price">R$ 1.200–2.000</span></span>
+                                    <p class="sub-desc">Interface administrativa, listagens, formulários e operações CRUD básicas (quando compatíveis com o backend).</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Integração com servidor ou API <span class="sub-price">R$ 900–1.800</span></span>
+                                    <p class="sub-desc">Comunicação com endpoints existentes, tratamento de respostas, erros e validação de dados.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Automação de formulários e pedidos <span class="sub-price">R$ 900–1.800</span></span>
+                                    <p class="sub-desc">Fluxos de envio, validação, organização de pedidos e integração com serviços existentes.</p>
+                                </div>
+                            </div>
+
                             <ul class="service-notes">
-                                <li><span>✕</span> Não são aplicativos Android ou iOS nativos.</li>
                                 <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
                             </ul>
                         </div>
@@ -164,19 +212,39 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
                         </div>
                     </article>
 
+                    <!-- PLANO AVANÇADO -->
                     <article class="card service-card">
                         <div class="card-header">
-                            <span class="service-category">Web</span>
-                            <h3 class="service-title">Criação de sites simples</h3>
+                            <span class="service-category">Avançado</span>
+                            <h3 class="service-title">Sistemas modulares e lógica personalizada</h3>
                         </div>
                         <div class="card-body">
                             <div class="price-tag">
-                                <span class="price-label">Preço inicial</span>
-                                <span class="price-value">R$ 200</span>
+                                <span class="price-label">Faixa de preço</span>
+                                <span class="price-value">R$ 2.000–3.500</span>
                             </div>
-                            <p class="service-desc">Inclui páginas institucionais ou landing pages, estrutura visual responsiva e interações básicas.</p>
+                            <p class="service-desc">Serviços incluídos nesta categoria:</p>
+
+                            <div class="service-subcategories">
+                                <div class="sub-item">
+                                    <span class="sub-title">Sistema web sob medida <span class="sub-price">R$ 2.000–3.500</span></span>
+                                    <p class="sub-desc">Aplicação com múltiplos módulos, regras de negócio e fluxos personalizados, dentro de escopo definido.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Painel com autenticação e permissões <span class="sub-price">R$ 2.000–3.500</span></span>
+                                    <p class="sub-desc">Login, sessões, controle de acesso e área administrativa com backend e persistência compatíveis.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Integração avançada com API <span class="sub-price">R$ 2.000–3.500</span></span>
+                                    <p class="sub-desc">Integração entre módulos, múltiplos endpoints, tratamento de falhas e sincronização de dados de escopo limitado.</p>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-title">Sistema de pedidos com painel <span class="sub-price">R$ 2.500–3.500</span></span>
+                                    <p class="sub-desc">Interface de pedidos, gerenciamento administrativo e integração com um servidor existente.</p>
+                                </div>
+                            </div>
+
                             <ul class="service-notes">
-                                <li><span>✕</span> Hospedagem, domínio e backend não estão incluídos no serviço padrão.</li>
                                 <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
                             </ul>
                         </div>
