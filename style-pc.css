@@ -447,7 +447,7 @@ img {
 .token-comment { color: #525266; font-style: italic; }
 
 /* ==========================================================================
-   3. SERVIÇOS E PREÇOS (ALINHAMENTO INTERNO)
+   3. SERVIÇOS E PREÇOS (ADAPTADO PARA OS NOVOS CARDS)
    ========================================================================== */
 
 .services-grid {
@@ -500,6 +500,16 @@ img {
     border-bottom: 1px solid var(--border-color);
 }
 
+.price-label {
+    display: block;
+    color: var(--text-subtle);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2rem;
+}
+
 .price-value {
     color: #fff;
     font-size: 2.2rem;
@@ -508,9 +518,50 @@ img {
 }
 
 .service-desc {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--text-muted);
     font-size: 0.92rem;
+}
+
+/* Estilos para as subcategorias de serviços da nova tabela */
+.service-subcategories {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 1.5rem;
+}
+
+.sub-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 10px;
+}
+
+.sub-item:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.sub-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.sub-price {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-left: 6px;
+    font-family: var(--font-code);
+}
+
+.sub-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
 }
 
 .service-notes {
@@ -598,18 +649,22 @@ img {
     align-items: stretch;
 }
 
-.project-placeholder {
-    display: flex;
-    min-height: 200px;
-    align-items: center;
-    justify-content: center;
+.project-image-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
     border-bottom: 1px solid var(--border-color);
-    background: 
-        radial-gradient(circle at center, rgba(255, 42, 75, 0.15), transparent 70%),
-        #07070b;
-    color: var(--text-subtle);
-    font-family: var(--font-code);
-    font-size: 0.8rem;
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+.project-card:hover .project-image-wrapper img {
+    transform: scale(1.03);
 }
 
 .project-content {
