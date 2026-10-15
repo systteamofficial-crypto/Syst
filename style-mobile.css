@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SYST TEAM · ULTRA DARK CRIMSON UI (VERSÃO EXCLUSIVA PARA MOBILE)
+   SYST TEAM · ULTRA DARK CRIMSON UI (VERSÃO MOBILE OTIMIZADA)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap');
@@ -213,8 +213,51 @@ img { display: block; max-width: 100%; height: auto; }
 .service-category { margin-bottom: 0.5rem; color: var(--accent); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; }
 .service-title { margin-bottom: 0.8rem; font-size: 1.15rem; font-weight: 800; }
 .price-tag { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+.price-label { display: block; color: var(--text-subtle); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
 .price-value { color: #fff; font-size: 1.7rem; font-weight: 800; }
-.service-desc { margin-bottom: 1.2rem; color: var(--text-muted); font-size: 0.85rem; }
+.service-desc { margin-bottom: 1rem; color: var(--text-muted); font-size: 0.85rem; }
+
+/* SUBCATEGORIAS MOBILE */
+.service-subcategories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+}
+
+.sub-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 8px;
+}
+
+.sub-item:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.sub-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.sub-price {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-left: 4px;
+    font-family: var(--font-code);
+}
+
+.sub-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin: 0;
+}
+
 .service-notes { margin-bottom: 1.2rem; }
 .service-notes li { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; color: var(--text-muted); font-size: 0.8rem; }
 .service-notes span { color: var(--accent); font-weight: 900; }
@@ -246,7 +289,7 @@ img { display: block; max-width: 100%; height: auto; }
 .contact-btn { display: flex; align-items: center; gap: 0.9rem; width: 100%; padding: 0.9rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); text-align: left; }
 .contact-icon { display: flex; width: 38px; height: 38px; flex-shrink: 0; align-items: center; justify-content: center; border: 1px solid var(--border-color); border-radius: 9px; background: rgba(255, 255, 255, 0.03); color: var(--accent); font-size: 1rem; }
 .contact-btn strong { display: block; color: var(--text-main); font-size: 0.88rem; }
-.contact-btn span:not(.contact-icon) { color: var(--text-muted); font-family: var(--font-code); font-size: 0.72rem; }
+.contact-btn span:not(.contact-icon) { color: var(--text-muted); font-family: var(--font-code); font-size: 0.72rem; word-break: break-all; }
 .copy-feedback { display: block; margin-top: 0.2rem; color: var(--accent); font-size: 0.72rem; font-weight: 700; }
 
 .footer { padding: 2.5rem 0 1.5rem; border-top: 1px solid var(--border-color); background: #030305; }
