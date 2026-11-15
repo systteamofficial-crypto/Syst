@@ -43,6 +43,7 @@
                     <li><a href="#servicos" class="nav-link">Serviços</a></li>
                     <li><a href="#precos" class="nav-link">Preços</a></li>
                     <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="#avaliacoes" class="nav-link">Avaliações</a></li>
                     <li><a href="#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="#contato" class="nav-link">Contato</a></li>
                 </ul>
@@ -69,6 +70,7 @@
                         <li><a href="#servicos" class="nav-mobile-link">Serviços</a></li>
                         <li><a href="#precos" class="nav-mobile-link">Preços</a></li>
                         <li><a href="#projetos" class="nav-mobile-link">Projetos</a></li>
+                        <li><a href="#avaliacoes" class="nav-mobile-link">Avaliações</a></li>
                         <li><a href="#sobre" class="nav-mobile-link">Sobre</a></li>
                         <li><a href="#contato" class="nav-mobile-link">Contato</a></li>
                         <li id="mobile-auth-item"><a href="Auth/auth.html" class="nav-mobile-link mobile-auth-link" style="color: var(--accent);">Entrar / Cadastrar</a></li>
@@ -93,26 +95,44 @@
                 </div>
 
                 <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-photo hero-photo--main">
+                        <img src="assets/hero-workspace.webp" alt="" fetchpriority="high">
+                    </div>
+                    <div class="hero-photo hero-photo--detail">
+                        <img src="assets/hero-laptop-detail.webp" alt="" loading="lazy">
+                    </div>
+                    <div class="hero-photo-wash"></div>
                     <div class="hero-scene" id="hero-scene" aria-hidden="true"></div>
-                    <div class="code-window">
 
+                    <div class="hero-glass-note liquid-glass">
+                        <span class="hero-glass-note-dot"></span>
+                        <span>Ideias transformadas em experiências digitais</span>
+                    </div>
+
+                    <div class="code-window liquid-glass">
                         <div class="window-header">
                             <span class="dot red"></span>
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
-                            <span class="window-title">main.py / index.html</span>
+                            <span class="window-title">syst-team / solution.js</span>
+                            <span class="window-live"><i></i> online</span>
                         </div>
                         <div class="window-body">
-<pre><code><span class="token-keyword">def</span> <span class="token-func">build_solution</span>(idea):
-    <span class="token-var">design</span> = optimize_ui(idea)
-    <span class="token-var">code</span> = clean_code(design)
-    <span class="token-keyword">return</span> deploy_success(code)
+<pre><code><span class="token-keyword">const</span> <span class="token-var">solution</span> = <span class="token-keyword">async</span> (idea) =&gt; {
+  <span class="token-keyword">const</span> design = createExperience(idea);
+  <span class="token-keyword">const</span> code = buildWithCare(design);
+  <span class="token-keyword">return</span> deploy(code);
+};
 
-<span class="token-comment"># Pronto para o próximo projeto</span>
-solution = build_solution(<span class="token-string">"Sua visão"</span>)</code></pre>
+<span class="token-comment">// Sua próxima ideia começa aqui.</span></code></pre>
                         </div>
                     </div>
-                    <span class="hero-visual-caption"><span class="caption-mark"></span> Design · Desenvolvimento · Tecnologia</span>
+
+                    <div class="hero-glass-chip liquid-glass">
+                        <span class="hero-chip-icon">✦</span>
+                        <span><strong>Design + Tecnologia</strong><small>Em cada detalhe</small></span>
+                    </div>
+                    <span class="hero-visual-caption"><span class="caption-mark"></span> Criatividade · Código · Resultado</span>
                 </div>
             </div>
         </section>
@@ -354,7 +374,57 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
             </div>
         </section>
 
-        <!-- 6. QUEM SOMOS -->
+        <!-- 6. AVALIAÇÕES -->
+        <section class="reviews section" id="avaliacoes">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Experiências reais</span>
+                    <h2 class="section-title">O que dizem sobre a Syst Team</h2>
+                    <p class="section-subtitle">Avaliações enviadas por clientes e publicadas após uma breve revisão.</p>
+                </div>
+
+                <div class="reviews-summary" id="reviews-summary" aria-live="polite">
+                    <span class="reviews-average" id="reviews-average">—</span>
+                    <span class="reviews-stars" id="reviews-summary-stars" aria-label="Sem avaliações">☆☆☆☆☆</span>
+                    <span class="reviews-count" id="reviews-count">Carregando avaliações...</span>
+                </div>
+
+                <div class="reviews-layout">
+                    <div class="reviews-list" id="reviews-list" aria-live="polite">
+                        <p class="reviews-empty">Carregando avaliações...</p>
+                    </div>
+
+                    <aside class="reviews-form-card">
+                        <span class="reviews-form-eyebrow">Sua opinião importa</span>
+                        <h3>Conte como foi sua experiência.</h3>
+                        <p class="reviews-form-description">É necessário entrar em uma conta Syst Team para enviar uma avaliação. Ela ficará pendente até ser revisada.</p>
+                        <div id="review-auth-prompt" class="review-auth-prompt">
+                            <a class="btn btn-primary full-width" href="Auth/auth.html">Entrar ou criar conta</a>
+                        </div>
+                        <form id="review-form" class="review-form" hidden>
+                            <label class="review-label">Sua nota</label>
+                            <div class="review-rating-input" role="radiogroup" aria-label="Nota de 1 a 5 estrelas">
+                                <label><input type="radio" name="review-rating" value="1" required><span aria-hidden="true">★</span><span class="sr-only">1 estrela</span></label>
+                                <label><input type="radio" name="review-rating" value="2"><span aria-hidden="true">★</span><span class="sr-only">2 estrelas</span></label>
+                                <label><input type="radio" name="review-rating" value="3"><span aria-hidden="true">★</span><span class="sr-only">3 estrelas</span></label>
+                                <label><input type="radio" name="review-rating" value="4"><span aria-hidden="true">★</span><span class="sr-only">4 estrelas</span></label>
+                                <label><input type="radio" name="review-rating" value="5"><span aria-hidden="true">★</span><span class="sr-only">5 estrelas</span></label>
+                            </div>
+                            <label class="review-label" for="review-title">Título <span>(opcional)</span></label>
+                            <input id="review-title" name="title" type="text" maxlength="100" placeholder="Resuma sua experiência">
+                            <label class="review-label" for="review-comment">Comentário</label>
+                            <textarea id="review-comment" name="comment" minlength="10" maxlength="1500" rows="5" required placeholder="Conte um pouco sobre o atendimento e o resultado..."></textarea>
+                            <p class="review-form-hint">Mínimo de 10 caracteres. Sua avaliação será exibida após aprovação.</p>
+                            <button class="btn btn-primary full-width" id="review-submit" type="submit">Enviar avaliação</button>
+                        </form>
+                        <p id="review-feedback" class="review-feedback" role="status" aria-live="polite"></p>
+                        <div id="my-review-status" class="my-review-status" hidden></div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. QUEM SOMOS -->
         <section class="about section" id="sobre">
             <div class="container">
                 <div class="section-header">
@@ -448,6 +518,7 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#precos">Preços</a></li>
                     <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#avaliacoes">Avaliações</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
@@ -461,6 +532,7 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
 
     <!-- JS Principal da Aplicação -->
     <script src="app.js"></script>
+    <script src="js/reviews.js"></script>
     <script>
         // Script para cópia do telefone
         (() => {

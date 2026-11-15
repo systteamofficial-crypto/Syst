@@ -1,399 +1,219 @@
-
 /**
- * Syst Team - Core Application & Authentication Manager
- * Gerenciamento de autenticação, sessão e avatares.
+ * Syst Team — Client application
+ * Real authentication against the Syst Team REST API.
  */
+(() => {
+    'use strict';
 
-const API_BASE_URL = window.location.origin;
+    const API_BASE_URL = 'https://syst-server.onrender.com/api/v1';
+    const SESSION_TOKEN_KEY = 'syst_access_token';
+    const SESSION_USER_KEY = 'syst_user';
 
-/* =========================================
-   UTILITÁRIOS
-========================================= */
-
-function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
-    })[char]);
-}
-
-function getInitials(name) {
-    const parts = String(name || 'Usuário')
-        .trim()
-        .split(/\s+/)
-        .filter(Boolean);
-
-    return parts.length > 1
-        ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-        : (parts[0]?.[0] || '?').toUpperCase();
-}
-
-/* =========================================
-   AVATARES / GRAVATAR
-========================================= */
-
-const AvatarManager = {
-
-    getGravatar(email) {
-        if (!email || !window.md5) return null;
-
-        const normalizedEmail = email.trim().toLowerCase();
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
-            return null;
-        }
-
-        const hash = window.md5(normalizedEmail);
-
-        return `https://www.gravatar.com/avatar/${hash}?s=128&d=404`;
-    },
-
-    setupLoginPreview() {
-        const emailInput = document.getElementById('login-email');
-        const avatar = document.getElementById('login-avatar');
-        const initial = document.getElementById('login-avatar-initial');
-        const container = document.getElementById('login-avatar-container');
-
-        if (!emailInput || !avatar || !initial || !container) return;
-
-        let debounceTimer;
-
-        function resetAvatar() {
-            avatar.classList.remove('loaded');
-            container.classList.remove('has-photo');
-            avatar.removeAttribute('src');
-        }
-
-        emailInput.addEventListener('input', () => {
-            clearTimeout(debounceTimer);
-
-            const email = emailInput.value.trim();
-            const username = email.split('@')[0];
-
-            initial.textContent = username
-                ? getInitials(username)
-                : '?';
-
-            resetAvatar();
-
-            if (!email.includes('@')) return;
-
-            debounceTimer = setTimeout(() => {
-                const imageUrl = AvatarManager.getGravatar(email);
-
-                if (!imageUrl) return;
-
-                avatar.dataset.requestedUrl = imageUrl;
-
-                avatar.onload = () => {
-                    if (avatar.dataset.requestedUrl !== imageUrl) return;
-
-                    avatar.classList.add('loaded');
-                    container.classList.add('has-photo');
-                };
-
-                avatar.onerror = () => {
-                    if (avatar.dataset.requestedUrl !== imageUrl) return;
-
-                    resetAvatar();
-                };
-
-                avatar.src = imageUrl;
-
-            }, 450);
-        });
-    },
-
-    createHeaderAvatar(user) {
-        const initials = getInitials(
-            user.firstName || user.name || user.email
-        );
-
-        const picture = user.picture || null;
-
-        return `
-            <div class="user-avatar">
-                <span>${escapeHTML(initials)}</span>
-                ${picture ? `
-                    <img
-                        src="${escapeHTML(picture)}"
-                        alt="Foto de perfil"
-                        referrerpolicy="no-referrer">
-                ` : ''}
-            </div>
-        `;
+    function escapeHTML(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[char]);
     }
-};
 
-/* =========================================
-   COOKIES
-========================================= */
+    function getInitials(name) {
+        const parts = String(name || 'Usuário').trim().split(/\s+/).filter(Boolean);
+        return (parts.length > 1 ? parts[0][0] + parts.at(-1)[0] : parts[0]?.[0] || '?').toUpperCase();
+    }
 
-const CookieManager = {
+    async function apiRequest(path, options = {}) {
+        const headers = new Headers(options.headers || {});
+        if (options.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
 
-    set(name, value, days = 7) {
-        const expires = new Date(
-            Date.now() + days * 864e5
-        ).toUTCString();
+        const token = Auth.getToken();
+        if (token && options.auth !== false) headers.set('Authorization', `Bearer ${token}`);
 
-        const secure = window.location.protocol === 'https:'
-            ? '; Secure'
-            : '';
-
-        document.cookie =
-            `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax${secure}`;
-    },
-
-    get(name) {
+        let response;
         try {
-            const cookie = document.cookie
-                .split('; ')
-                .find(item => item.startsWith(`${name}=`));
-
-            return cookie
-                ? decodeURIComponent(cookie.substring(name.length + 1))
-                : '';
-
+            response = await fetch(`${API_BASE_URL}${path}`, {
+                ...options,
+                headers,
+                cache: 'no-store',
+                credentials: 'omit'
+            });
         } catch {
-            return '';
+            throw new Error('Não foi possível conectar à Syst API. Verifique sua conexão e tente novamente.');
         }
-    },
 
-    remove(name) {
-        document.cookie =
-            `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax`;
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+            const error = new Error(payload?.error?.message || 'Não foi possível concluir a solicitação.');
+            error.status = response.status;
+            error.code = payload?.error?.code;
+            error.fields = payload?.error?.fields || [];
+            throw error;
+        }
+        return payload;
     }
-};
 
-/* =========================================
-   AUTENTICAÇÃO
-========================================= */
-
-const Auth = {
-
-    getUser() {
-        const userCookie = CookieManager.get('syst_user');
-
-        if (!userCookie) return null;
-
-        try {
-            return JSON.parse(userCookie);
-        } catch {
-            return null;
+    const Auth = {
+        getToken() {
+            try { return sessionStorage.getItem(SESSION_TOKEN_KEY) || ''; }
+            catch { return ''; }
+        },
+        getUser() {
+            try { return JSON.parse(sessionStorage.getItem(SESSION_USER_KEY) || 'null'); }
+            catch { return null; }
+        },
+        setUserSession(user, token) {
+            sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(user));
+            sessionStorage.setItem(SESSION_TOKEN_KEY, token);
+        },
+        clearSession() {
+            sessionStorage.removeItem(SESSION_USER_KEY);
+            sessionStorage.removeItem(SESSION_TOKEN_KEY);
+        },
+        async restoreSession() {
+            const cachedUser = this.getUser();
+            if (!this.getToken()) return null;
+            try {
+                const result = await apiRequest('/auth/me');
+                sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(result.data.user));
+                return result.data.user;
+            } catch (error) {
+                if (error.status === 401 || error.status === 403) this.clearSession();
+                // Keep the cached header during temporary network/API outages; protected actions still require the server.
+                return this.getUser() || cachedUser;
+            }
+        },
+        async logout() {
+            try {
+                if (this.getToken()) await apiRequest('/auth/logout', { method: 'POST' });
+            } catch (error) {
+                console.warn('A sessão será removida localmente:', error.message);
+            } finally {
+                this.clearSession();
+                window.location.reload();
+            }
         }
-    },
+    };
 
-    setUserSession(userData, token = null) {
-        CookieManager.set(
-            'syst_user',
-            JSON.stringify(userData),
-            7
-        );
+    const AvatarManager = {
+        getGravatar(email) {
+            if (!email || typeof window.md5 !== 'function') return null;
+            const normalized = email.trim().toLowerCase();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) return null;
+            return `https://www.gravatar.com/avatar/${window.md5(normalized)}?s=128&d=404`;
+        },
+        setupLoginPreview() {
+            const emailInput = document.getElementById('login-email');
+            const avatar = document.getElementById('login-avatar');
+            const initial = document.getElementById('login-avatar-initial');
+            const container = document.getElementById('login-avatar-container');
+            if (!emailInput || !avatar || !initial || !container) return;
 
-        if (token) {
-            CookieManager.set('syst_token', token, 7);
+            let timer;
+            let version = 0;
+            const reset = () => {
+                avatar.classList.remove('loaded');
+                container.classList.remove('has-photo');
+                avatar.removeAttribute('src');
+            };
+            emailInput.addEventListener('input', () => {
+                clearTimeout(timer);
+                const email = emailInput.value.trim();
+                initial.textContent = email.split('@')[0] ? getInitials(email.split('@')[0]) : '?';
+                reset();
+                const current = ++version;
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+                timer = setTimeout(() => {
+                    const url = this.getGravatar(email);
+                    if (!url) return;
+                    avatar.onload = () => {
+                        if (current !== version) return;
+                        avatar.classList.add('loaded');
+                        container.classList.add('has-photo');
+                    };
+                    avatar.onerror = () => { if (current === version) reset(); };
+                    avatar.src = url;
+                }, 450);
+            });
+        },
+        createHeaderAvatar(user) {
+            const name = user.fullName || `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email;
+            const url = this.getGravatar(user.email);
+            return `<div class="user-avatar"><span>${escapeHTML(getInitials(name))}</span>${url ? `<img src="${escapeHTML(url)}" alt="" referrerpolicy="no-referrer">` : ''}</div>`;
         }
-    },
+    };
 
-    logout() {
-        CookieManager.remove('syst_user');
-        CookieManager.remove('syst_token');
+    function renderHeaderAuth(user) {
+        const headerContainer = document.getElementById('auth-header-container');
+        const mobileAuthItem = document.getElementById('mobile-auth-item');
+        if (!user) return;
 
-        window.location.reload();
-    }
-};
-
-/* =========================================
-   CABEÇALHO
-========================================= */
-
-function renderHeaderAuth() {
-
-    const headerContainer = document.getElementById(
-        'auth-header-container'
-    );
-
-    const mobileAuthItem = document.getElementById(
-        'mobile-auth-item'
-    );
-
-    const user = Auth.getUser();
-
-    if (!user) return;
-
-    const firstName = user.firstName ||
-        user.name?.split(' ')[0] ||
-        user.email?.split('@')[0] ||
-        'Usuário';
-
-    if (headerContainer) {
-
-        headerContainer.innerHTML = `
-            <div class="user-profile-badge">
-
-                ${AvatarManager.createHeaderAvatar(user)}
-
-                <span>
-                    Olá, <strong>${escapeHTML(firstName)}</strong>
-                </span>
-
-                <button
-                    onclick="Auth.logout()"
-                    class="btn-logout"
-                    title="Sair da conta">
-                    Sair
-                </button>
-
-            </div>
-        `;
-
-        const headerImage = headerContainer.querySelector(
-            '.user-avatar img'
-        );
-
-        if (headerImage) {
-            headerImage.addEventListener('error', () => {
-                headerImage.remove();
+        const firstName = user.firstName || user.fullName?.split(' ')[0] || 'Usuário';
+        if (headerContainer) {
+            headerContainer.innerHTML = `<div class="user-profile-badge">${AvatarManager.createHeaderAvatar(user)}<span>Olá, <strong>${escapeHTML(firstName)}</strong></span><button type="button" id="syst-logout" class="btn-logout" title="Sair da conta">Sair</button></div>`;
+            headerContainer.querySelector('#syst-logout')?.addEventListener('click', () => Auth.logout());
+            headerContainer.querySelector('.user-avatar img')?.addEventListener('error', (event) => event.currentTarget.remove());
+        }
+        if (mobileAuthItem) {
+            mobileAuthItem.innerHTML = `<a href="#" id="syst-mobile-logout" class="nav-mobile-link">Sair (${escapeHTML(firstName)})</a>`;
+            mobileAuthItem.querySelector('#syst-mobile-logout')?.addEventListener('click', (event) => {
+                event.preventDefault();
+                Auth.logout();
             });
         }
     }
 
-    if (mobileAuthItem) {
-
-        mobileAuthItem.innerHTML = `
-            <a
-                href="#"
-                onclick="event.preventDefault(); Auth.logout()"
-                class="nav-mobile-link"
-                style="color: var(--color-bordo);">
-                Sair (${escapeHTML(firstName)})
-            </a>
-        `;
-    }
-}
-
-/* =========================================
-   ALERTAS
-========================================= */
-
-function showAlert(element, message, type) {
-
-    if (!element) return;
-
-    element.className = `alert-box ${type}`;
-    element.textContent = message;
-    element.style.display = 'block';
-}
-
-/* =========================================
-   LOGIN / CADASTRO
-========================================= */
-
-async function handleAuthSubmit(event, type) {
-
-    event.preventDefault();
-
-    const alertBox = document.getElementById('auth-alert');
-
-    if (alertBox) {
-        alertBox.style.display = 'none';
+    function showAlert(element, message, type) {
+        if (!element) return;
+        element.className = `alert-box ${type}`;
+        element.textContent = message;
+        element.style.display = 'block';
     }
 
-    let payload = {};
+    async function handleAuthSubmit(event, type) {
+        event.preventDefault();
+        const alertBox = document.getElementById('auth-alert');
+        const form = event.currentTarget;
+        const submitButton = form.querySelector('[type="submit"]');
+        if (alertBox) alertBox.style.display = 'none';
+        if (submitButton) submitButton.disabled = true;
 
-    if (type === 'login') {
-
-        payload = {
+        const payload = type === 'login' ? {
             email: document.getElementById('login-email').value.trim(),
             password: document.getElementById('login-password').value
-        };
-
-    } else {
-
-        payload = {
+        } : {
             firstName: document.getElementById('reg-firstname').value.trim(),
             lastName: document.getElementById('reg-lastname').value.trim(),
             email: document.getElementById('reg-email').value.trim(),
             password: document.getElementById('reg-password').value
         };
+
+        try {
+            const result = await apiRequest(`/auth/${type === 'register' ? 'register' : 'login'}`, {
+                method: 'POST',
+                auth: false,
+                body: JSON.stringify(payload)
+            });
+            Auth.setUserSession(result.data.user, result.data.accessToken);
+            showAlert(alertBox, type === 'register' ? 'Conta criada! Redirecionando...' : 'Login realizado! Redirecionando...', 'success');
+            window.setTimeout(() => { window.location.href = '../index.html'; }, 650);
+        } catch (error) {
+            let message = error.message;
+            if (error.code === 'VALIDATION_ERROR' && error.fields?.length) {
+                message = error.fields.map((field) => field.message).join(' ');
+            }
+            showAlert(alertBox, message, 'error');
+        } finally {
+            if (submitButton) submitButton.disabled = false;
+        }
     }
 
-    try {
+    window.Auth = Auth;
+    window.SystAPI = { request: apiRequest, baseUrl: API_BASE_URL };
+    window.handleAuthSubmit = handleAuthSubmit;
 
-        /*
-         * INTEGRAÇÃO COM BACKEND
-         *
-         * Quando o servidor estiver pronto, substitua
-         * a simulação abaixo por uma requisição real.
-         *
-         * const response = await fetch(
-         *     `${API_BASE_URL}/api/auth/${type}`,
-         *     {
-         *         method: 'POST',
-         *         headers: {
-         *             'Content-Type': 'application/json'
-         *         },
-         *         credentials: 'include',
-         *         body: JSON.stringify(payload)
-         *     }
-         * );
-         *
-         * const data = await response.json();
-         *
-         * if (!response.ok) {
-         *     throw new Error(data.message || 'Erro na autenticação');
-         * }
-         *
-         * Auth.setUserSession(data.user);
-         */
-
-        // SIMULAÇÃO TEMPORÁRIA
-
-        const gravatar = AvatarManager.getGravatar(payload.email);
-
-        const dummyUser = {
-            firstName: payload.firstName || payload.email.split('@')[0],
-            lastName: payload.lastName || '',
-            email: payload.email,
-            picture: gravatar
-        };
-
-        Auth.setUserSession(
-            dummyUser,
-            'sample_jwt_token_syst_team'
-        );
-
-        showAlert(
-            alertBox,
-            'Sucesso! Redirecionando...',
-            'success'
-        );
-
-        setTimeout(() => {
-            window.location.href = '../index.html';
-        }, 1000);
-
-    } catch (err) {
-
-        showAlert(
-            alertBox,
-            err.message || 'Falha ao conectar com o servidor.',
-            'error'
-        );
-    }
-}
-
-/* =========================================
-   INICIALIZAÇÃO
-========================================= */
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    renderHeaderAuth();
-
-    AvatarManager.setupLoginPreview();
-
-});
+    document.addEventListener('DOMContentLoaded', async () => {
+        AvatarManager.setupLoginPreview();
+        if (document.getElementById('auth-header-container')) {
+            const user = await Auth.restoreSession();
+            renderHeaderAuth(user);
+        }
+    });
+})();

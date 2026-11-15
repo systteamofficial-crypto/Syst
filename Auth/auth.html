@@ -267,8 +267,8 @@
                             type="password"
                             id="reg-password"
                             required
-                            minlength="6"
-                            placeholder="Mínimo de 6 caracteres"
+                            minlength="10"
+                            placeholder="Mínimo de 10 caracteres"
                             autocomplete="new-password">
 
                     </div>
@@ -355,91 +355,6 @@
         );
 
 
-        /* ==================================
-           PREVIEW DO AVATAR
-        ================================== */
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const emailInput = document.getElementById('login-email');
-
-            const avatar = document.getElementById('login-avatar');
-
-            const initial = document.getElementById('login-avatar-initial');
-
-            const container = document.getElementById(
-                'login-avatar-container'
-            );
-
-            if (!emailInput || !avatar || !initial || !container) return;
-
-            let debounceTimer = null;
-            let requestVersion = 0;
-
-            function resetAvatar() {
-
-                avatar.classList.remove('loaded');
-
-                container.classList.remove('has-photo');
-
-                avatar.removeAttribute('src');
-            }
-
-            emailInput.addEventListener('input', () => {
-
-                clearTimeout(debounceTimer);
-
-                const email = emailInput.value.trim();
-
-                const username = email.split('@')[0];
-
-                initial.textContent = username
-                    ? username.substring(0, 2).toUpperCase()
-                    : '?';
-
-                resetAvatar();
-
-                const currentVersion = ++requestVersion;
-
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    return;
-                }
-
-                debounceTimer = setTimeout(() => {
-
-                    if (typeof window.md5 !== 'function') {
-                        console.warn('Biblioteca MD5 não carregada.');
-                        return;
-                    }
-
-                    const hash = window.md5(email.toLowerCase());
-
-                    const imageUrl =
-                        `https://www.gravatar.com/avatar/${hash}?s=128&d=404`;
-
-                    avatar.onload = () => {
-
-                        if (currentVersion !== requestVersion) return;
-
-                        avatar.classList.add('loaded');
-
-                        container.classList.add('has-photo');
-                    };
-
-                    avatar.onerror = () => {
-
-                        if (currentVersion !== requestVersion) return;
-
-                        resetAvatar();
-                    };
-
-                    avatar.src = imageUrl;
-
-                }, 450);
-
-            });
-
-        });
 
     </script>
 

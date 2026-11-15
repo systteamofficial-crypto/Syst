@@ -99,3 +99,136 @@ button,input { font: inherit; }
     .card-body,.readme-body { padding: 1.1rem 1.2rem 1.25rem; }
 }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* =====================================================================
+   SYST TEAM CHECKOUT · LIQUID GLASS
+   Mesmo material visual da home e da área de conta; lógica Pix preservada.
+   ===================================================================== */
+body {
+    background:
+        radial-gradient(ellipse at 9% 5%, rgba(255,255,255,.76), transparent 30rem),
+        radial-gradient(ellipse at 92% 28%, rgba(15,61,58,.11), transparent 34rem),
+        radial-gradient(ellipse at 50% 90%, rgba(108,21,30,.055), transparent 34rem),
+        linear-gradient(145deg, #F8E8D8, #F5DABF 54%, #EED5C0);
+}
+.header {
+    border-bottom-color: rgba(255,255,255,.58);
+    background: rgba(245,218,191,.62);
+    -webkit-backdrop-filter: blur(28px) saturate(165%);
+    backdrop-filter: blur(28px) saturate(165%);
+    box-shadow: 0 10px 35px rgba(55,35,27,.055), inset 0 1px 0 rgba(255,255,255,.72);
+}
+.header::after {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.95), transparent);
+    pointer-events: none;
+}
+.logo { text-shadow: 0 1px 0 rgba(255,255,255,.38); }
+.btn-outline {
+    border-color: rgba(255,255,255,.78);
+    background: linear-gradient(135deg, rgba(255,255,255,.64), rgba(255,255,255,.24));
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    backdrop-filter: blur(18px) saturate(145%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 8px 20px rgba(15,61,58,.06);
+}
+.btn-outline:hover {
+    border-color: rgba(255,255,255,.56);
+    background: linear-gradient(135deg, rgba(15,61,58,.96), rgba(8,45,43,.9));
+    color: var(--paper);
+}
+.btn-primary {
+    border-color: rgba(255,255,255,.28);
+    background: linear-gradient(115deg, #842630, #6C151E 58%, #174C45 135%);
+    box-shadow: 0 12px 26px rgba(108,21,30,.2), inset 0 1px 0 rgba(255,255,255,.24);
+}
+.btn-primary:hover {
+    background: linear-gradient(115deg, #983943, #741B25 58%, #1C5A51 135%);
+    box-shadow: 0 16px 32px rgba(108,21,30,.25), inset 0 1px 0 rgba(255,255,255,.32);
+}
+.card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-color: rgba(255,255,255,.78);
+    border-radius: 25px;
+    background: linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,252,247,.42) 58%, rgba(15,61,58,.06));
+    -webkit-backdrop-filter: blur(26px) saturate(155%);
+    backdrop-filter: blur(26px) saturate(155%);
+    box-shadow: 0 25px 58px rgba(48,34,27,.12), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.2);
+}
+.card::before {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.98), transparent);
+    pointer-events: none;
+}
+.card-header, .card-body { position: relative; z-index: 1; }
+.service-title { color: #6C151E; }
+.pix-qr-wrapper {
+    border-color: rgba(255,255,255,.76);
+    background: linear-gradient(145deg, rgba(255,255,255,.55), rgba(15,61,58,.055));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.88), 0 8px 20px rgba(15,61,58,.035);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+}
+.qr-code-box {
+    border: 1px solid rgba(255,255,255,.95);
+    box-shadow: 0 8px 20px rgba(15,61,58,.08), inset 0 1px 0 #fff;
+}
+.copy-input-group input {
+    border-color: rgba(255,255,255,.86);
+    background: rgba(255,255,255,.52);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.88);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+}
+.copy-input-group input:focus-visible {
+    outline: 2px solid rgba(15,61,58,.65);
+    outline-offset: 2px;
+}
+.download-box.unlocked {
+    border-color: rgba(255,255,255,.76);
+    background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(15,61,58,.07));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.86);
+}
+.readme-card {
+    border-color: rgba(255,255,255,.28);
+    background: linear-gradient(145deg, rgba(29,86,77,.86), rgba(8,45,43,.82) 62%, rgba(108,21,30,.2));
+    color: var(--paper);
+    -webkit-backdrop-filter: blur(30px) saturate(155%);
+    backdrop-filter: blur(30px) saturate(155%);
+    box-shadow: 0 30px 70px rgba(7,35,33,.24), inset 0 1px 0 rgba(255,255,255,.24);
+}
+.readme-card::before {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.68), transparent);
+}
+.window-header {
+    background: rgba(255,255,255,.075);
+    border-bottom-color: rgba(255,255,255,.17);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+}
+.readme-footer-note { border-top-color: rgba(255,255,255,.2); }
+.footer {
+    border-top: 1px solid rgba(255,255,255,.26);
+    background: linear-gradient(145deg, rgba(15,61,58,.98), rgba(6,38,36,.99));
+    box-shadow: 0 -16px 44px rgba(15,61,58,.08), inset 0 1px 0 rgba(255,255,255,.12);
+}
+:focus-visible { outline-color: rgba(15,61,58,.72); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .header, .card, .pix-qr-wrapper, .copy-input-group input { background-color: rgba(255,249,241,.95); }
+    .readme-card, .footer { background-color: #0F3D3A; }
+}
+@media (max-width: 560px) {
+    .card { border-radius: 21px; }
+    .btn { box-shadow: 0 8px 20px rgba(108,21,30,.14), inset 0 1px 0 rgba(255,255,255,.22); }
+}
