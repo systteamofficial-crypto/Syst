@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0F3D3A">
+    <meta name="description" content="Checkout e informações de entrega da Syst Team.">
+    <title>Syst Team | Checkout & Pagamento Pix</title>
+
+    <!-- Tipografia Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Específico mantendo o mesmo endereço -->
+    <link rel="stylesheet" href="style-pagamento-pc.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="header" id="topo">
+        <div class="container header-container">
+            <a href="../index.html" class="logo" aria-label="Syst Team, início">
+                <!-- Logo localizada na raiz -->
+                <img src="../Syst_Logo.png" alt="Logo Syst Team" class="logo-image">
+                <span class="logo-text">Syst Team <span class="logo-mark">/ Checkout</span></span>
+            </a>
+
+            <div class="header-action">
+                <a href="../index.html" class="btn btn-outline">&larr; Voltar ao site</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="checkout-main">
+        <div class="container checkout-container">
+            
+            <!-- COLUNA ESQUERDA: PAGAMENTO & DOWNLOAD -->
+            <div class="checkout-left">
+                
+                <!-- Card de Pagamento Pix -->
+                <section class="card payment-card">
+                    <div class="card-header">
+                        <span class="service-category">Pagamento Seguro</span>
+                        <h2 class="service-title">Pagamento via Pix</h2>
+                        <p class="section-subtitle" style="text-align: left; margin: 0;">Escaneie o QR Code abaixo ou copie o código Pix para efetuar o pagamento único do seu projeto.</p>
+                    </div>
+
+                    <div class="card-body pix-body">
+                        <div class="pix-qr-wrapper">
+                            <!-- Simulação de QR Code Pix -->
+                            <div class="qr-code-box">
+                                <span class="qr-placeholder-icon">📱</span>
+                                <span class="qr-text">QR Code Pix</span>
+                            </div>
+                            <div class="pix-value-info">
+                                <span class="price-label">Valor Total</span>
+                                <span class="price-value">R$ 900,00</span>
+                                <span class="pix-exclusive-tag">Exclusivo via PIX</span>
+                            </div>
+                        </div>
+
+                        <div class="pix-copy-section">
+                            <label for="pix-code-input" class="sub-title">Pix Copia e Cola:</label>
+                            <div class="copy-input-group">
+                                <input type="text" id="pix-code-input" value="00020126580014br.gov.bcb.pix0136123e4567-e89b-12d3-a456-4266141740005204000053039865802BR5925Syst Team Desenvolvimento6009Campo Grande62070503***63041D3C" readonly>
+                                <button type="button" class="btn btn-primary" id="copy-pix-btn">Copiar Código</button>
+                            </div>
+                            <span class="copy-feedback" id="pix-feedback" aria-live="polite"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card de Download Liberado -->
+                <section class="card download-card">
+                    <div class="card-header">
+                        <span class="service-category">Entrega do Projeto</span>
+                        <h3 class="service-title">Link de Download</h3>
+                        <p class="service-desc">O link de download dos arquivos fonte e executáveis é liberado automaticamente após a confirmação do pagamento.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="download-box unlocked">
+                            <div class="download-info">
+                                <strong>Status: <span class="status-unlocked">Liberado ✓</span></strong>
+                                <span class="sub-desc">Pacote completo do projeto compactado (ZIP).</span>
+                            </div>
+                            <a href="#" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Baixar Arquivos (.zip)</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- COLUNA DIREITA: READ-ME DE MUDANÇAS -->
+            <div class="checkout-right">
+                <section class="card readme-card">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="window-title">README.md · Alterações & Notas</span>
+                    </div>
+                    <div class="readme-body">
+                        <h3 class="readme-heading"># Notas de Atualização & Escopo</h3>
+                        <p class="readme-text">Bem-vindo ao painel de entrega da Syst Team. Abaixo estão listadas as modificações, melhorias e entregas realizadas nesta versão:</p>
+                        
+                        <div class="readme-changelog">
+                            <div class="changelog-item">
+                                <span class="changelog-version">v1.2.0 · Atual</span>
+                                <ul>
+                                    <li>Atualização da identidade visual Bordo, Green e Cream.</li>
+                                    <li>Otimização de rotas e responsividade em múltiplos módulos.</li>
+                                    <li>Ajustes finos de performance no painel administrativo e formulários.</li>
+                                </ul>
+                            </div>
+                            <div class="changelog-item">
+                                <span class="changelog-version">v1.1.0</span>
+                                <ul>
+                                    <li>Estruturação inicial do banco de dados e endpoints da API.</li>
+                                    <li>Correção de bugs em fluxos de autenticação e sessões.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="readme-footer-note">
+                            <p>Precisa de suporte adicional ou ajustes no escopo? Entre em contato com nosso atendimento técnico.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="justify-content: center; text-align: center;">
+                <p>&copy; 2026 Syst Team. Todos os direitos reservados. Pagamento exclusivo via PIX.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE CÓPIA DO PIX -->
+    <script>
+        (() => {
+            const copyBtn = document.getElementById("copy-pix-btn");
+            const pixInput = document.getElementById("pix-code-input");
+            const feedback = document.getElementById("pix-feedback");
+            if (!copyBtn || !pixInput || !feedback) return;
+
+            copyBtn.addEventListener("click", async () => {
+                try {
+                    await navigator.clipboard.writeText(pixInput.value);
+                    feedback.textContent = "Código Pix copiado com sucesso!";
+                    copyBtn.textContent = "Copiado!";
+                    setTimeout(() => {
+                        copyBtn.textContent = "Copiar Código";
+                        feedback.textContent = "";
+                    }, 3000);
+                } catch (error) {
+                    feedback.textContent = "Erro ao copiar o código Pix.";
+                }
+            });
+        })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js"></script>
+    <script src="../js/motion.js"></script>
+</body>
+</html>
