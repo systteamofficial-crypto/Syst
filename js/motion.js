@@ -27,7 +27,7 @@
             window.systLenis = lenis;
         }
 
-        if (!reducedMotion) {
+     if (!reducedMotion) {
             // Hero entrance: simple, short and limited to the first viewport.
             const hero = document.querySelector('.hero');
             if (hero) {
@@ -35,7 +35,7 @@
                 intro.from('.hero-content .badge', { y: 18, opacity: 0, duration: 0.55 })
                     .from('.hero-title', { y: 42, opacity: 0, duration: 0.85 }, '-=0.2')
                     .from('.hero-description', { y: 20, opacity: 0, duration: 0.65 }, '-=0.4')
-                    .from('.hero-buttons .btn', { y: 16, opacity: 0, duration: 0.55, stagger: 0.1 }, '-=0.35')
+                    .from('.hero-buttons .btn', { y: 16, opacity: 0, duration: 0.55, stagger: 0.1, clearProps: 'opacity,transform' }, '-=0.35')
                     .from('.code-window', { y: 28, opacity: 0, rotate: 0, duration: 0.85 }, '-=0.65');
             }
 
