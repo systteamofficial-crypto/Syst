@@ -36,10 +36,7 @@
                     .from('.hero-title', { y: 42, opacity: 0, duration: 0.85 }, '-=0.2')
                     .from('.hero-description', { y: 20, opacity: 0, duration: 0.65 }, '-=0.4')
                     .from('.hero-buttons .btn', { y: 16, opacity: 0, duration: 0.55, stagger: 0.1 }, '-=0.35')
-                    .from('.hero-photo--main', { y: 22, opacity: 0, scale: 0.98, duration: 0.9 }, '-=0.6')
-                    .from('.hero-photo--detail', { y: 18, opacity: 0, duration: 0.7 }, '-=0.55')
-                    .from('.hero-glass-note, .hero-glass-chip', { y: 12, opacity: 0, duration: 0.55, stagger: 0.1 }, '-=0.5')
-                    .from('.code-window', { y: 28, opacity: 0, rotate: 0, duration: 0.85 }, '-=0.55');
+                    .from('.code-window', { y: 28, opacity: 0, rotate: 0, duration: 0.85 }, '-=0.65');
             }
 
             // Reveal sections only once; no perpetual scroll-linked transforms.
