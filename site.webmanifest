@@ -1,0 +1,16 @@
+{
+  "name": "Syst Team | Desenvolvimento Digital",
+  "short_name": "Syst Team",
+  "description": "Sites responsivos, redesign de interfaces e sistemas web sob medida.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5DABF",
+  "theme_color": "#F5DABF",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

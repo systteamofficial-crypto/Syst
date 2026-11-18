@@ -4,17 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#F5DABF">
-    <meta name="description" content="A Syst Team desenvolve sites, interfaces, sistemas modulares e integrações digitais sob medida.">
-    <title>Syst Team | Desenvolvimento Digital</title>
+
+    <!-- SEO técnico e validação de propriedade -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large">
+    <meta name="google-site-verification" content="CA0VzA0Bib6mSuVAqlOuA_3rxEQ58H7vMlrT8MIpDcg">
+    <link rel="canonical" href="https://syst-smd9.onrender.com/">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph e Twitter Card para prévias de compartilhamento -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Syst Team">
+    <meta property="og:title" content="Syst Team | Desenvolvimento Digital">
+    <meta property="og:description" content="Sites responsivos, redesign de interfaces e sistemas web sob medida.">
+    <meta property="og:url" content="https://syst-smd9.onrender.com/">
+    <meta property="og:image" content="https://syst-smd9.onrender.com/og-syst-team.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Syst Team — desenvolvimento digital, sites e interfaces.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Syst Team | Desenvolvimento Digital">
+    <meta name="twitter:description" content="Sites responsivos, redesign de interfaces e sistemas web sob medida.">
+    <meta name="twitter:image" content="https://syst-smd9.onrender.com/og-syst-team.png">
+
+    <!-- Dados estruturados de organização e website. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://syst-smd9.onrender.com/#organization",
+          "name": "Syst Team",
+          "url": "https://syst-smd9.onrender.com/",
+          "description": "Equipe independente de desenvolvimento digital, criação de sites, redesign de interfaces, sistemas modulares e integrações via API.",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://syst-smd9.onrender.com/Syst_Logo.png"
+          },
+          "sameAs": [
+            "https://github.com/systteamofficial-crypto",
+            "https://www.instagram.com/syst.teamm/"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-67-9285-1922",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://syst-smd9.onrender.com/#website",
+          "url": "https://syst-smd9.onrender.com/",
+          "name": "Syst Team",
+          "inLanguage": "pt-BR",
+          "publisher": { "@id": "https://syst-smd9.onrender.com/#organization" }
+        }
+      ]
+    }
+    </script>
+
+    <meta name="description" content="A Syst Team desenvolve sites responsivos, redesigns de interfaces, sistemas modulares e integrações via API, com foco em experiência mobile, desempenho e qualidade.">
+    <title>Syst Team | Criação de Sites, Redesign de Interfaces e Sistemas Web</title>
 
     <!-- Tipografia Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Desktop e mobile têm composições independentes. -->
-    <link rel="stylesheet" href="style-pc.css" media="(min-width: 821px)">
-    <link rel="stylesheet" href="style-mobile.css" media="(max-width: 820px)">
+    <!-- Folhas de estilo corrigidas com nomes oficiais -->
+    <link rel="stylesheet" href="style-pc.css" media="screen and (min-width: 821px)">
+    <link rel="stylesheet" href="style-mobile.css" media="screen and (max-width: 820px)">
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
 
     <!-- Import Map oficial do Three.js (CDN fixado para builds reproduzíveis). -->
@@ -120,141 +185,261 @@ solution = build_solution(<span class="token-string">"Sua visão"</span>)</code>
             </div>
         </section>
 
-        <!-- 3. SERVIÇOS E PREÇOS -->
-        <section class="services section" id="servicos">
-            <div class="container">
-                <div class="section-header" id="precos">
-                    <span class="section-tag">Serviços &amp; Investimento</span>
-                    <h2 class="section-title">Tabela de preços oficial da Syst Team</h2>
-                    <p class="section-subtitle">Qualidade, performance e suporte real. Cada escopo é analisado individualmente. <strong>Forma de pagamento exclusiva: PIX.</strong></p>
+      
+<!-- 3. SERVIÇOS E PREÇOS -->
+<section class="services section" id="servicos">
+    <div class="container">
+        <div class="section-header" id="precos">
+            <span class="section-tag">Serviços &amp; Investimento</span>
+            <h2 class="section-title">Tabela de preços oficial da Syst Team</h2>
+            <p class="section-subtitle">
+                Soluções desenvolvidas sob medida, com atenção à qualidade,
+                performance e experiência do usuário. Cada projeto recebe
+                uma avaliação individual de escopo, complexidade e prazo.
+                <strong>Pagamento via PIX.</strong>
+            </p>
+        </div>
+
+        <div class="services-grid">
+
+            <!-- PLANO BÁSICO -->
+            <article class="card service-card">
+                <div class="card-header">
+                    <span class="service-category">Básico</span>
+                    <h3 class="service-title">Projetos pequenos e objetivos</h3>
                 </div>
 
-                <div class="services-grid">
-                    <!-- PLANO BÁSICO -->
-                    <article class="card service-card">
-                        <div class="card-header">
-                            <span class="service-category">Básico</span>
-                            <h3 class="service-title">Projetos pequenos e objetivos</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="price-tag">
-                                <span class="price-label">Faixa de preço</span>
-                                <span class="price-value">R$ 400–900</span>
-                            </div>
-                            <p class="service-desc">Serviços incluídos nesta categoria:</p>
-                            
-                            <div class="service-subcategories">
-                                <div class="sub-item">
-                                    <span class="sub-title">Redesign de interface <span class="sub-price">R$ 400–800</span></span>
-                                    <p class="sub-desc">Melhorias visuais em páginas existentes, CSS, responsividade e organização dos componentes.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Landing page personalizada <span class="sub-price">R$ 600–900</span></span>
-                                    <p class="sub-desc">Página única com identidade visual, seções, botões e links funcionais.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Correções e otimização <span class="sub-price">R$ 400–700</span></span>
-                                    <p class="sub-desc">Correção de bugs, ajustes de layout e melhorias pontuais de desempenho.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Integração simples com WhatsApp <span class="sub-price">R$ 400–600</span></span>
-                                    <p class="sub-desc">Botões de contato, mensagens pré-preenchidas e links dinâmicos.</p>
-                                </div>
-                            </div>
+                <div class="card-body">
+                    <div class="price-tag">
+                        <span class="price-label">Faixa de preço</span>
+                        <span class="price-value">R$ 400–1.400</span>
+                    </div>
 
-                            <ul class="service-notes">
-                                <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#contato" class="btn btn-outline full-width">Solicitar orçamento</a>
-                        </div>
-                    </article>
+                    <p class="service-desc">Serviços incluídos nesta categoria:</p>
 
-                    <!-- PLANO INTERMEDIÁRIO -->
-                    <article class="card service-card featured-card">
-                        <div class="card-header">
-                            <span class="service-category">Intermediário</span>
-                            <h3 class="service-title">Sites completos e funcionalidades personalizadas</h3>
+                    <div class="service-subcategories">
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Redesign de interface
+                                <span class="sub-price">R$ 500–1.000</span>
+                            </span>
+                            <p class="sub-desc">
+                                Reformulação visual de páginas existentes,
+                                melhorias de CSS, responsividade, hierarquia
+                                visual e organização dos componentes.
+                            </p>
                         </div>
-                        <div class="card-body">
-                            <div class="price-tag">
-                                <span class="price-label">Faixa de preço</span>
-                                <span class="price-value">R$ 900–2.000</span>
-                            </div>
-                            <p class="service-desc">Serviços incluídos nesta categoria:</p>
 
-                            <div class="service-subcategories">
-                                <div class="sub-item">
-                                    <span class="sub-title">Site institucional personalizado <span class="sub-price">R$ 1.200–2.000</span></span>
-                                    <p class="sub-desc">Múltiplas páginas, navegação, responsividade, identidade visual e formulários.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Painel administrativo <span class="sub-price">R$ 1.200–2.000</span></span>
-                                    <p class="sub-desc">Interface administrativa, listagens, formulários e operações CRUD básicas (quando compatíveis com o backend).</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Integração com servidor ou API <span class="sub-price">R$ 900–1.800</span></span>
-                                    <p class="sub-desc">Comunicação com endpoints existentes, tratamento de respostas, erros e validação de dados.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Automação de formulários e pedidos <span class="sub-price">R$ 900–1.800</span></span>
-                                    <p class="sub-desc">Fluxos de envio, validação, organização de pedidos e integração com serviços existentes.</p>
-                                </div>
-                            </div>
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Landing page personalizada
+                                <span class="sub-price">R$ 800–1.400</span>
+                            </span>
+                            <p class="sub-desc">
+                                Página única com identidade visual própria,
+                                seções estratégicas, elementos interativos,
+                                botões e links funcionais.
+                            </p>
+                        </div>
 
-                            <ul class="service-notes">
-                                <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
-                            </ul>
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Correções e otimização
+                                <span class="sub-price">R$ 400–900</span>
+                            </span>
+                            <p class="sub-desc">
+                                Correção de bugs, ajustes de layout,
+                                melhorias de responsividade e otimizações
+                                pontuais de desempenho.
+                            </p>
                         </div>
-                        <div class="card-footer">
-                            <a href="#contato" class="btn btn-primary full-width">Solicitar orçamento</a>
-                        </div>
-                    </article>
 
-                    <!-- PLANO AVANÇADO -->
-                    <article class="card service-card">
-                        <div class="card-header">
-                            <span class="service-category">Avançado</span>
-                            <h3 class="service-title">Sistemas modulares e lógica personalizada</h3>
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Integração simples com WhatsApp
+                                <span class="sub-price">R$ 400–700</span>
+                            </span>
+                            <p class="sub-desc">
+                                Implementação de botões de contato,
+                                mensagens pré-preenchidas e links dinâmicos
+                                para facilitar a comunicação.
+                            </p>
                         </div>
-                        <div class="card-body">
-                            <div class="price-tag">
-                                <span class="price-label">Faixa de preço</span>
-                                <span class="price-value">R$ 2.000–3.500</span>
-                            </div>
-                            <p class="service-desc">Serviços incluídos nesta categoria:</p>
+                    </div>
 
-                            <div class="service-subcategories">
-                                <div class="sub-item">
-                                    <span class="sub-title">Sistema web sob medida <span class="sub-price">R$ 2.000–3.500</span></span>
-                                    <p class="sub-desc">Aplicação com múltiplos módulos, regras de negócio e fluxos personalizados, dentro de escopo definido.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Painel com autenticação e permissões <span class="sub-price">R$ 2.000–3.500</span></span>
-                                    <p class="sub-desc">Login, sessões, controle de acesso e área administrativa com backend e persistência compatíveis.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Integração avançada com API <span class="sub-price">R$ 2.000–3.500</span></span>
-                                    <p class="sub-desc">Integração entre módulos, múltiplos endpoints, tratamento de falhas e sincronização de dados de escopo limitado.</p>
-                                </div>
-                                <div class="sub-item">
-                                    <span class="sub-title">Sistema de pedidos com painel <span class="sub-price">R$ 2.500–3.500</span></span>
-                                    <p class="sub-desc">Interface de pedidos, gerenciamento administrativo e integração com um servidor existente.</p>
-                                </div>
-                            </div>
-
-                            <ul class="service-notes">
-                                <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#contato" class="btn btn-outline full-width">Solicitar orçamento</a>
-                        </div>
-                    </article>
+                    <ul class="service-notes">
+                        <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
+
+                <div class="card-footer">
+                    <a href="#contato" class="btn btn-outline full-width">
+                        Solicitar orçamento
+                    </a>
+                </div>
+            </article>
+
+
+            <!-- PLANO INTERMEDIÁRIO -->
+            <article class="card service-card featured-card">
+                <div class="card-header">
+                    <span class="service-category">Intermediário</span>
+                    <h3 class="service-title">Sites completos e funcionalidades personalizadas</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="price-tag">
+                        <span class="price-label">Faixa de preço</span>
+                        <span class="price-value">R$ 1.000–3.500</span>
+                    </div>
+
+                    <p class="service-desc">Serviços incluídos nesta categoria:</p>
+
+                    <div class="service-subcategories">
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Site institucional personalizado
+                                <span class="sub-price">R$ 1.500–3.000</span>
+                            </span>
+                            <p class="sub-desc">
+                                Sites com múltiplas páginas, navegação
+                                estruturada, identidade visual personalizada,
+                                responsividade e formulários funcionais.
+                            </p>
+                        </div>
+
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Painel administrativo
+                                <span class="sub-price">R$ 1.800–3.500</span>
+                            </span>
+                            <p class="sub-desc">
+                                Interfaces administrativas, gerenciamento
+                                de informações, listagens, formulários
+                                e operações CRUD básicas, conforme
+                                compatibilidade com o backend.
+                            </p>
+                        </div>
+
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Integração com servidor ou API
+                                <span class="sub-price">R$ 1.000–2.000</span>
+                            </span>
+                            <p class="sub-desc">
+                                Comunicação com endpoints existentes,
+                                tratamento de respostas, gerenciamento
+                                de erros e validação de dados.
+                            </p>
+                        </div>
+
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Automação de formulários e pedidos
+                                <span class="sub-price">R$ 1.000–2.200</span>
+                            </span>
+                            <p class="sub-desc">
+                                Fluxos automatizados de envio, validação,
+                                organização de pedidos e integração
+                                com serviços existentes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <ul class="service-notes">
+                        <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="card-footer">
+                    <a href="#contato" class="btn btn-primary full-width">
+                        Solicitar orçamento
+                    </a>
+                </div>
+            </article>
+
+
+            <!-- PLANO AVANÇADO -->
+            <article class="card service-card">
+                <div class="card-header">
+                    <span class="service-category">Avançado</span>
+                    <h3 class="service-title">Sistemas modulares e lógica personalizada</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="price-tag">
+                        <span class="price-label">Faixa de preço</span>
+                        <span class="price-value">R$ 2.000–7.000+</span>
+                    </div>
+
+                    <p class="service-desc">Serviços incluídos nesta categoria:</p>
+
+                    <div class="service-subcategories">
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Sistema web sob medida
+                                <span class="sub-price">R$ 3.500–7.000+</span>
+                            </span>
+                            <p class="sub-desc">
+                                Aplicações personalizadas com múltiplos
+                                módulos, regras de negócio, processamento
+                                de dados e fluxos específicos.
+                            </p>
+                        </div>
+
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Painel com autenticação e permissões
+                                <span class="sub-price">R$ 2.000–4.000</span>
+                            </span>
+                            <p class="sub-desc">
+                                Sistemas de login, gerenciamento de sessões,
+                                controle de acesso, permissões de usuários
+                                e áreas administrativas integradas ao backend.
+                            </p>
+                        </div>
+
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Integração avançada com API
+                                <span class="sub-price">R$ 2.000–4.000</span>
+                            </span>
+                            <p class="sub-desc">
+                                Integração entre módulos, múltiplos endpoints,
+                                sincronização de dados, tratamento de falhas
+                                e comunicação entre serviços.
+                            </p>
+                        </div>
+
+                        <div class="sub-item">
+                            <span class="sub-title">
+                                Sistema de pedidos com painel
+                                <span class="sub-price">R$ 3.000–5.000</span>
+                            </span>
+                            <p class="sub-desc">
+                                Plataforma de gerenciamento de pedidos,
+                                interface administrativa, acompanhamento
+                                de solicitações e integração com servidor.
+                            </p>
+                        </div>
+                    </div>
+
+                    <ul class="service-notes">
+                        <li><span>✓</span> <strong>Pagamento único via PIX.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="card-footer">
+                    <a href="#contato" class="btn btn-outline full-width">
+                        Solicitar orçamento
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
 
         <!-- 4. COMO FUNCIONA -->
         <section class="process section">
