@@ -6,4 +6,4 @@
 - `index.html`: metadados SEO, Open Graph, canonical, JSON-LD e validação Google adicionados.
 - `robots.txt`, `sitemap.xml`, `SEO-INDEXACAO.md`, `site.webmanifest`, `favicon.png` e `og-syst-team.png` adicionados.
 
-Leia `SEO-INDEXACAO.md` para concluir a verificação no Search Console e entender o token TXT de DNS.
+Consulte `SEO-INDEXACAO.md` para enviar o sitemap do domínio próprio.
