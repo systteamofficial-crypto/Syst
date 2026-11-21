@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+(() => {
+const THREE = window.THREE;
 
 const host = document.querySelector('#hero-scene');
 
@@ -12,7 +13,8 @@ if (host) {
     let active = false;
     let pointerX = 0;
     let pointerY = 0;
-    let frameHandle = 0;
+    let easedX = 0;
+    let easedY = 0;
     const geometries = new Set();
     const materials = new Set();
     const textures = new Set();
@@ -246,10 +248,12 @@ if (host) {
             if (disposed || !renderer || !active) return;
             const t = reducedMotion ? 0 : clock.getElapsedTime();
             if (!reducedMotion) {
-                composition.rotation.y = Math.sin(t*0.20)*0.04 + pointerX*0.075;
-                composition.rotation.x = Math.sin(t*0.18)*0.025 + pointerY*0.045;
+                easedX += (pointerX - easedX) * 0.07;
+                easedY += (pointerY - easedY) * 0.07;
+                composition.rotation.y = Math.sin(t*0.20)*0.04 + easedX*0.24;
+                composition.rotation.x = Math.sin(t*0.18)*0.025 + easedY*0.16;
                 laptop.position.y = 0.02 + Math.sin(t*0.72)*0.055;
-                laptop.rotation.y = -0.24 + pointerX*0.05 + Math.sin(t*0.27)*0.018;
+                laptop.rotation.y = -0.24 + easedX*0.12 + Math.sin(t*0.27)*0.018;
                 orbitA.rotation.z = 0.28 + t*0.045;
                 orbitB.rotation.y = 1.02 + t*0.055;
                 glassCube.rotation.x = 0.4 + t*0.11;
@@ -269,6 +273,8 @@ if (host) {
             if (!width || !height) return;
             camera.aspect = width/height;
             camera.position.z = width < 420 ? 10.8 : width < 760 ? 9.8 : 9.1;
+            camera.setViewOffset(width,height,width > 820 ? -width*0.235 : 0,width > 820 ? 0 : -height*0.21,width,height);
+            if (width <= 820) camera.position.z = Math.max(12, 8.5*height/width);
             camera.updateProjectionMatrix();
             renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, width<560 ? 1.15 : lowPowerDevice ? 1.1 : 1.5));
             renderer.setSize(width,height,false);
@@ -286,7 +292,7 @@ if (host) {
             pointerY = ((event.clientY-bounds.top)/bounds.height-0.5)*0.45;
         };
         if (!reducedMotion && window.matchMedia('(pointer:fine)').matches) {
-            host.addEventListener('pointermove',onPointerMove,{passive:true});
+            host.closest('.hero').addEventListener('pointermove',onPointerMove,{passive:true});
         }
 
         visibilityObserver = new IntersectionObserver(([entry]) => {
@@ -304,17 +310,18 @@ if (host) {
         };
         document.addEventListener('visibilitychange',onVisibilityChange);
 
-        window.addEventListener('pagehide',() => {
+        window.addEventListener('pagehide',(event) => {
+            if (event.persisted) return;
             disposed = true; active = false;
             document.removeEventListener('visibilitychange',onVisibilityChange);
-            host.removeEventListener('pointermove',onPointerMove);
+            host.closest('.hero').removeEventListener('pointermove',onPointerMove);
             visibilityObserver?.disconnect(); resizeObserver?.disconnect();
             renderer?.setAnimationLoop(null);
             geometries.forEach((geometry) => geometry.dispose());
             materials.forEach((material) => material.dispose());
             textures.forEach((texture) => texture.dispose());
             renderer?.dispose();
-        },{once:true});
+        });
     } catch (error) {
         console.warn('[Syst Team] Three.js indisponível; mantendo o visual de fallback.',error);
         renderer?.dispose();
@@ -322,3 +329,5 @@ if (host) {
         host.dataset.fallback = 'true';
     }
 }
+
+})();

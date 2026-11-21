@@ -35,8 +35,7 @@
                 intro.from('.hero-content .badge', { y: 18, opacity: 0, duration: 0.55 })
                     .from('.hero-title', { y: 42, opacity: 0, duration: 0.85 }, '-=0.2')
                     .from('.hero-description', { y: 20, opacity: 0, duration: 0.65 }, '-=0.4')
-                    .from('.hero-buttons .btn', { y: 16, opacity: 0, duration: 0.55, stagger: 0.1, clearProps: 'opacity,transform' }, '-=0.35')
-                    .from('.code-window', { y: 28, opacity: 0, rotate: 0, duration: 0.85 }, '-=0.65');
+                    .from('.hero-buttons .btn', { y: 16, opacity: 0, duration: 0.55, stagger: 0.1, clearProps: 'opacity,transform' }, '-=0.35');
             }
 
             // Reveal sections only once; no perpetual scroll-linked transforms.
@@ -54,7 +53,7 @@
             [
                 '.service-card', '.process-step', '.project-card',
                 '.about-card', '.contact-card', '.review-card', '.reviews-form-card', '.payment-card',
-                '.download-card', '.readme-card'
+                '.download-card', '.readme-card', '.process-layout .code-window'
             ].forEach((selector) => {
                 const items = gsap.utils.toArray(selector);
                 if (!items.length) return;
@@ -121,6 +120,12 @@
                         }
                     });
                 }
+            }
+
+            const poster = document.querySelector('.brand-poster');
+            if (poster) {
+                gsap.from(poster.children, {yPercent: 30, opacity: 0, stagger: 0.09, duration: 0.85,
+                    ease: 'power3.out', scrollTrigger: {trigger: poster, start: 'top 92%', once: true}});
             }
 
             const headerBar = document.querySelector('.header');
