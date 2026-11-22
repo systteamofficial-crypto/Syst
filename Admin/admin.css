@@ -15,3 +15,4 @@ button{color:var(--ink);border:1px solid var(--line);background:transparent;curs
 .toolbar,.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.toolbar{justify-content:space-between;border-block:1px solid var(--line);padding:16px 0;margin-bottom:20px}
 #list{display:grid;gap:12px}article{overflow-wrap:anywhere}article p{white-space:pre-wrap}article h3{margin:10px 0 4px}.meta{font-size:.88rem;color:#526259}.actions{margin-top:16px}#notice{margin-top:20px;color:var(--wine)}
 @media(max-width:680px){#gate{grid-template-columns:1fr}header{gap:10px}header span{font-size:.83rem;padding-left:10px}main{padding-inline:18px}header a{font-size:17px}}
+details{margin-top:1rem}summary{cursor:pointer;font-weight:600}details form{margin-top:12px}details label{display:grid;gap:4px}textarea{min-height:72px;padding:10px;font:inherit;resize:vertical}article .overline{margin-bottom:8px}
