@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://syst-server.onrender.com">
+<title>Administração · Syst Team</title><link rel="icon" href="../favicon.png"><link rel="stylesheet" href="admin.css"><script defer src="admin.js"></script>
+</head>
+<body><header><a href="../"><img src="../assets/Syst_Logo.webp" width="40" height="40" alt="">Syst Team</a><span>Administração</span><button id="logout" hidden>Sair</button></header>
+<main><section id="gate"><div class="intro"><p class="overline">Área restrita</p><h1>Painel de<br><em>moderação.</em></h1><p>Revise as avaliações enviadas ao site da Syst Team.</p></div>
+<form id="login"><h2>Acesso administrativo</h2><label for="password">Senha</label><input id="password" type="password" required maxlength="1024" autocomplete="current-password"><button class="primary">Entrar no painel</button></form></section>
+<section id="desk" hidden><p class="overline">Moderação</p><h1>Avaliações</h1><div class="toolbar"><label for="filter">Exibir <select id="filter"><option value="pending">Pendentes</option><option value="approved">Aprovadas</option><option value="rejected">Rejeitadas</option><option value="all">Todas</option></select></label><button id="refresh">Atualizar</button></div><div id="list"></div></section>
+<p id="notice" role="status" aria-live="polite"></p></main></body></html>
