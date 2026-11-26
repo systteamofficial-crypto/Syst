@@ -28,16 +28,6 @@
         }
 
      if (!reducedMotion) {
-            // Hero entrance: simple, short and limited to the first viewport.
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-                intro.from('.hero-content .badge', { y: 18, opacity: 0, duration: 0.55 })
-                    .from('.hero-title', { y: 42, opacity: 0, duration: 0.85 }, '-=0.2')
-                    .from('.hero-description', { y: 20, opacity: 0, duration: 0.65 }, '-=0.4')
-                    .from('.hero-buttons .btn', { y: 16, opacity: 0, duration: 0.55, stagger: 0.1, clearProps: 'opacity,transform' }, '-=0.35');
-            }
-
             // Reveal sections only once; no perpetual scroll-linked transforms.
             gsap.utils.toArray('.section-header').forEach((header) => {
                 gsap.from(header.children, {
@@ -72,56 +62,6 @@
                 });
             });
 
-            // Cafeteria case study: stagger the two previews and reveal the story copy.
-            const cafeteriaShowcase = document.querySelector('.cafeteria-showcase');
-            if (cafeteriaShowcase) {
-                const versions = cafeteriaShowcase.querySelectorAll('.cafeteria-version');
-                const story = cafeteriaShowcase.querySelector('.cafeteria-story');
-                const storyParts = story ? story.querySelectorAll(
-                    '.cafeteria-story-eyebrow, .cafeteria-story-line, .cafeteria-story-lead, .cafeteria-story-point, .cafeteria-story-signature'
-                ) : [];
-
-                gsap.from(versions, {
-                    x: -28,
-                    opacity: 0,
-                    duration: 0.78,
-                    stagger: 0.16,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: cafeteriaShowcase,
-                        start: 'top 78%',
-                        once: true
-                    }
-                });
-
-                if (story) {
-                    gsap.from(story, {
-                        x: 28,
-                        opacity: 0,
-                        duration: 0.85,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: cafeteriaShowcase,
-                            start: 'top 78%',
-                            once: true
-                        }
-                    });
-                    gsap.from(storyParts, {
-                        y: 18,
-                        opacity: 0,
-                        duration: 0.62,
-                        stagger: 0.075,
-                        ease: 'power2.out',
-                        delay: 0.12,
-                        scrollTrigger: {
-                            trigger: cafeteriaShowcase,
-                            start: 'top 76%',
-                            once: true
-                        }
-                    });
-                }
-            }
-
             const poster = document.querySelector('.brand-poster');
             if (poster) {
                 gsap.from(poster.children, {yPercent: 30, opacity: 0, stagger: 0.09, duration: 0.85,
@@ -139,6 +79,9 @@
             if (authCard) gsap.from(authCard, { y: 22, opacity: 0, duration: 0.7, ease: 'power3.out' });
         }
 
+        document.querySelectorAll('.plan-scope').forEach((details) => {
+            details.addEventListener('toggle', () => ScrollTrigger.refresh());
+        });
         window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
     }
 
@@ -159,7 +102,10 @@
         });
         mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') setMenu(false);
+            if (event.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+                setMenu(false);
+                menuButton.focus();
+            }
         });
         document.addEventListener('click', (event) => {
             if (mobileNav.classList.contains('is-open') && !event.target.closest('.header-right-group')) setMenu(false);

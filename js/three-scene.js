@@ -272,9 +272,7 @@ if (host) {
             const height = host.clientHeight;
             if (!width || !height) return;
             camera.aspect = width/height;
-            camera.position.z = width < 420 ? 10.8 : width < 760 ? 9.8 : 9.1;
-            camera.setViewOffset(width,height,width > 820 ? -width*0.235 : 0,width > 820 ? 0 : -height*0.21,width,height);
-            if (width <= 820) camera.position.z = Math.max(12, 8.5*height/width);
+            camera.position.z = Math.max(9.1, 8.3 / camera.aspect);
             camera.updateProjectionMatrix();
             renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, width<560 ? 1.15 : lowPowerDevice ? 1.1 : 1.5));
             renderer.setSize(width,height,false);

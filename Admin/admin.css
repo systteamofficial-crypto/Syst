@@ -16,3 +16,11 @@ button{color:var(--ink);border:1px solid var(--line);background:transparent;curs
 #list{display:grid;gap:12px}article{overflow-wrap:anywhere}article p{white-space:pre-wrap}article h3{margin:10px 0 4px}.meta{font-size:.88rem;color:#526259}.actions{margin-top:16px}#notice{margin-top:20px;color:var(--wine)}
 @media(max-width:680px){#gate{grid-template-columns:1fr}header{gap:10px}header span{font-size:.83rem;padding-left:10px}main{padding-inline:18px}header a{font-size:17px}}
 details{margin-top:1rem}summary{cursor:pointer;font-weight:600}details form{margin-top:12px}details label{display:grid;gap:4px}textarea{min-height:72px;padding:10px;font:inherit;resize:vertical}article .overline{margin-bottom:8px}
+
+header { background: #193c33; color: #fff7e7; }
+header span { color: #dee7dc; border-color: #7d9488; }
+header button { color: #fff7e7; border-color: #91a79c; }
+#desk .toolbar { background: #edf0e8; border-radius: 4px; padding: 14px; }
+#desk article { border-radius: 6px; }
+#desk button:disabled { cursor: default; }
+@media (max-width: 420px) { header { flex-wrap: wrap; height: auto; min-height: 64px; padding-block: 8px; } }

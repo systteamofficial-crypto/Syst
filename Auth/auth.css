@@ -532,3 +532,6 @@ body::after {
         transition-duration: .01ms !important;
     }
 }
+.auth-card { border-top: 4px solid var(--accent); }
+.auth-title span { font-family: Georgia,serif; font-style: italic; font-weight: 400; }
+:focus-visible { outline: 3px solid #955722; outline-offset: 3px; }
